@@ -71,7 +71,11 @@ async function pollStatus() {
         }
         $("#stat-battery").textContent = s.battery || "--";
         $("#stat-space").textContent = s.free_space || "--";
-        $("#stat-recording").textContent = s.recording ? "Yes" : "No";
+        $("#stat-sd").textContent = s.sd_card || "--";
+        const recSecs = s.recording_seconds || 0;
+        $("#stat-recording").textContent = s.recording
+            ? `${Math.floor(recSecs/60)}:${String(recSecs%60).padStart(2,"0")}`
+            : "No";
     } catch {
         $("#conn-badge").textContent = "Disconnected";
         $("#conn-badge").className = "status-badge disconnected";

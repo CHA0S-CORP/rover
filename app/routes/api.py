@@ -64,7 +64,7 @@ class ModeRequest(BaseModel):
 @router.post("/mode")
 async def set_mode(req: ModeRequest):
     if req.mode not in (0, 1, 2):
-        raise HTTPException(400, "Mode must be 0 (video), 1 (photo), or 2 (preview)")
+        raise HTTPException(400, "Mode must be 0 (video), 1 (photo), or 2 (playback)")
     try:
         await _client().set_mode(req.mode)
         return {"ok": True}

@@ -4,6 +4,21 @@ import httpx
 
 from app.config import CAM_API_BASE, CAM_FILE_BASE, API_TIMEOUT
 
+BATTERY_LEVELS = {
+    "0": "Full",
+    "1": "Medium",
+    "2": "Low",
+    "3": "Empty",
+    "4": "Unknown",
+    "5": "Charging",
+}
+
+SD_STATUS = {
+    "0": "Removed",
+    "1": "Inserted",
+    "2": "Locked",
+}
+
 
 class NovatekError(Exception):
     pass
@@ -16,16 +31,18 @@ class NovatekClient:
     async def close(self) -> None:
         await self._client.aclose()
 
-    async def _cmd(self, cmd: int, par: int | None = None) -> str:
+    async def _cmd(self, cmd: int, par: int | None = None, str_param: str | None = None) -> str:
         url = f"{CAM_API_BASE}&cmd={cmd}"
         if par is not None:
             url += f"&par={par}"
+        if str_param is not None:
+            url += f"&str={str_param}"
         resp = await self._client.get(url)
         resp.raise_for_status()
         return resp.text
 
-    async def _cmd_xml(self, cmd: int, par: int | None = None) -> ET.Element:
-        text = await self._cmd(cmd, par)
+    async def _cmd_xml(self, cmd: int, par: int | None = None, str_param: str | None = None) -> ET.Element:
+        text = await self._cmd(cmd, par, str_param)
         return ET.fromstring(text)
 
     async def ping(self) -> bool:
@@ -39,7 +56,8 @@ class NovatekClient:
         status: dict = {}
         try:
             root = await self._cmd_xml(3019)
-            status["battery"] = root.findtext("Value", "unknown")
+            raw = root.findtext("Value", "unknown")
+            status["battery"] = BATTERY_LEVELS.get(raw, raw)
         except Exception:
             status["battery"] = "unknown"
 
@@ -50,26 +68,30 @@ class NovatekClient:
             status["free_space"] = "unknown"
 
         try:
-            root = await self._cmd_xml(3014)
-            status["config"] = root.findtext("Value", "unknown")
+            root = await self._cmd_xml(3024)
+            raw = root.findtext("Value", "unknown")
+            status["sd_card"] = SD_STATUS.get(raw, raw)
         except Exception:
-            status["config"] = "unknown"
+            status["sd_card"] = "unknown"
 
-        # Check recording state via cmd 2016
+        # Recording time > 0 means recording is active
         try:
             root = await self._cmd_xml(2016)
-            status["recording"] = root.findtext("Value", "0") == "1"
+            rec_time = root.findtext("Value", "0")
+            status["recording"] = int(rec_time) > 0
+            status["recording_seconds"] = int(rec_time)
         except Exception:
             status["recording"] = False
+            status["recording_seconds"] = 0
 
         status["connected"] = True
         return status
 
     async def start_recording(self) -> str:
-        return await self._cmd(2001, 1)
+        return await self._cmd(2001, str_param="1")
 
     async def stop_recording(self) -> str:
-        return await self._cmd(2001, 0)
+        return await self._cmd(2001, str_param="0")
 
     async def take_photo(self) -> str:
         return await self._cmd(1001)
@@ -78,8 +100,8 @@ class NovatekClient:
         return await self._cmd_xml(3014)
 
     async def set_mode(self, mode: int) -> str:
-        """Set camera mode: 0=video, 1=photo, 2=preview."""
-        return await self._cmd(3001, mode)
+        """Set camera mode: 0=video, 1=photo, 2=playback."""
+        return await self._cmd(3001, par=mode)
 
     async def get_file_list(self) -> list[dict]:
         root = await self._cmd_xml(3015)
@@ -94,10 +116,14 @@ class NovatekClient:
         return files
 
     async def delete_file(self, path: str) -> str:
-        return await self._cmd(4003, path)  # type: ignore[arg-type]
+        return await self._cmd(4003, str_param=path)
 
     async def get_thumbnail_url(self, path: str) -> str:
         return f"{CAM_API_BASE}&cmd=4001&str={path}"
+
+    async def get_firmware_version(self) -> str:
+        root = await self._cmd_xml(3012)
+        return root.findtext("String", "unknown")
 
     def get_download_client(self) -> httpx.AsyncClient:
         """Return a client with long timeout for file downloads."""

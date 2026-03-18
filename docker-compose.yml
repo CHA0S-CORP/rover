@@ -1,0 +1,15 @@
+services:
+  rover:
+    build: .
+    # host networking so the container can reach the dashcam
+    # on the USB WiFi adapter's 192.168.1.x subnet
+    network_mode: host
+    restart: unless-stopped
+    environment:
+      - CAM_IP=192.168.1.254
+      - WEB_PORT=8080
+      # Set to "*" to allow any origin, or a specific origin like "https://mysite.com"
+      - CORS_ORIGINS=*
+    # Alternative to host networking: use bridge + routes
+    # ports:
+    #   - "8080:8080"

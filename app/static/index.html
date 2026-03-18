@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rover - Dashcam Control</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+</head>
+<body>
+    <header>
+        <h1>Rover</h1>
+        <span id="conn-badge" class="status-badge disconnected">Disconnected</span>
+    </header>
+
+    <main>
+        <section class="player">
+            <h2>Live View</h2>
+            <video id="video" muted autoplay playsinline></video>
+            <div class="player-controls">
+                <button id="btn-stream-start" class="primary">Start Stream</button>
+                <button id="btn-stream-stop" disabled>Stop Stream</button>
+                <span id="stream-status" style="align-self:center;font-size:0.8rem;color:#888;margin-left:auto;"></span>
+            </div>
+        </section>
+
+        <div class="sidebar">
+            <section>
+                <h2>Status</h2>
+                <div class="status-grid">
+                    <div class="status-item">
+                        <div class="label">Battery</div>
+                        <div class="value" id="stat-battery">--</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="label">Free Space</div>
+                        <div class="value" id="stat-space">--</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="label">Recording</div>
+                        <div class="value" id="stat-recording">--</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="label">Stream</div>
+                        <div class="value" id="stat-stream">Off</div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Controls</h2>
+                <div class="controls-grid">
+                    <button id="btn-rec-start" class="primary">Start Recording</button>
+                    <button id="btn-rec-stop">Stop Recording</button>
+                    <button id="btn-photo">Take Photo</button>
+                    <select id="mode-select" class="mode-select">
+                        <option value="0">Video Mode</option>
+                        <option value="1">Photo Mode</option>
+                        <option value="2">Preview Mode</option>
+                    </select>
+                    <button id="btn-mode">Set Mode</button>
+                </div>
+            </section>
+        </div>
+
+        <section class="files-section">
+            <div class="files-header">
+                <h2>Files</h2>
+                <button id="btn-refresh-files">Refresh</button>
+            </div>
+            <table class="files-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="files-body"></tbody>
+            </table>
+        </section>
+    </main>
+
+    <script src="/app.js"></script>
+</body>
+</html>

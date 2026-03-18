@@ -1,0 +1,16 @@
+[Unit]
+Description=Rover Dashcam Web UI
+After=network.target NetworkManager.service
+Wants=NetworkManager.service
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/rover
+ExecStart=/home/pi/rover/.venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8080
+Restart=on-failure
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

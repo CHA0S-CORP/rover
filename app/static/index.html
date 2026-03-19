@@ -25,6 +25,8 @@
                 <button id="btn-snapshot">Snapshot</button>
                 <button id="btn-hls-start">Start HLS</button>
                 <button id="btn-hls-stop" disabled>Stop HLS</button>
+                <button id="btn-rtsp-start" class="primary">RTSP HLS</button>
+                <button id="btn-rtsp-stop" disabled>Stop RTSP</button>
                 <span id="stream-status" style="align-self:center;font-size:0.8rem;color:#888;margin-left:auto;"></span>
             </div>
         </section>
@@ -56,6 +58,10 @@
                     <div class="status-item">
                         <div class="label">HLS</div>
                         <div class="value" id="stat-hls">Off</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="label">RTSP</div>
+                        <div class="value" id="stat-rtsp">Off</div>
                     </div>
                 </div>
             </section>

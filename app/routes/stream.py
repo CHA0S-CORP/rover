@@ -61,6 +61,20 @@ async def serve_hls(filename: str):
                         headers={"Cache-Control": "no-cache, no-store"})
 
 
+# ── RTSP→HLS (4K copy, no transcode) ──
+
+@router.post("/api/stream/rtsp/start")
+async def rtsp_hls_start():
+    await _manager().start_rtsp_hls()
+    return {"ok": True}
+
+
+@router.post("/api/stream/rtsp/stop")
+async def rtsp_hls_stop():
+    await _manager().stop_rtsp_hls()
+    return {"ok": True}
+
+
 # ── Status ──
 
 @router.get("/api/stream/status")

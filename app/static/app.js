@@ -45,6 +45,22 @@ async function stopHls() {
     $("#btn-hls-stop").disabled = true;
 }
 
+// --- RTSP HLS (4K copy, no transcode) ---
+
+async function startRtspHls() {
+    $("#btn-rtsp-start").disabled = true;
+    await fetch("/api/stream/rtsp/start", { method: "POST" });
+    $("#btn-rtsp-stop").disabled = false;
+    $("#stream-status").textContent = "RTSP HLS starting...";
+    setTimeout(() => { $("#stream-status").textContent = ""; }, 5000);
+}
+
+async function stopRtspHls() {
+    await fetch("/api/stream/rtsp/stop", { method: "POST" });
+    $("#btn-rtsp-start").disabled = false;
+    $("#btn-rtsp-stop").disabled = true;
+}
+
 // --- Status polling ---
 
 async function pollStatus() {
@@ -75,8 +91,11 @@ async function pollStatus() {
         const s = await res.json();
         $("#stat-mjpeg").textContent = s.mjpeg_clients > 0 ? `${s.mjpeg_clients} viewer${s.mjpeg_clients > 1 ? "s" : ""}` : "Off";
         $("#stat-hls").textContent = s.hls_active ? (s.hls_ready ? "Ready" : "Starting") : "Off";
-        $("#btn-hls-start").disabled = s.hls_active;
+        $("#stat-rtsp").textContent = s.rtsp_hls_active ? (s.hls_ready ? "Ready" : "Starting") : "Off";
+        $("#btn-hls-start").disabled = s.hls_active || s.rtsp_hls_active;
         $("#btn-hls-stop").disabled = !s.hls_active;
+        $("#btn-rtsp-start").disabled = s.rtsp_hls_active || s.hls_active;
+        $("#btn-rtsp-stop").disabled = !s.rtsp_hls_active;
     } catch {}
 }
 
@@ -169,6 +188,8 @@ document.addEventListener("DOMContentLoaded", () => {
     $("#btn-snapshot").addEventListener("click", takeSnapshot);
     $("#btn-hls-start").addEventListener("click", startHls);
     $("#btn-hls-stop").addEventListener("click", stopHls);
+    $("#btn-rtsp-start").addEventListener("click", startRtspHls);
+    $("#btn-rtsp-stop").addEventListener("click", stopRtspHls);
     $("#btn-rec-start").addEventListener("click", () => camAction("/api/record/start"));
     $("#btn-rec-stop").addEventListener("click", () => camAction("/api/record/stop"));
     $("#btn-photo").addEventListener("click", () => camAction("/api/photo"));

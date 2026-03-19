@@ -14,7 +14,7 @@ import time
 import httpx
 
 from app.config import (
-    CAM_STREAM_MJPEG, HLS_OUTPUT_DIR,
+    CAM_STREAM_MJPEG, CAM_STREAM_RTSP, HLS_OUTPUT_DIR,
     HLS_SEGMENT_TIME, HLS_LIST_SIZE, STREAM_TIMEOUT,
 )
 
@@ -30,6 +30,10 @@ class StreamManager:
         self._hls_process: asyncio.subprocess.Process | None = None
         self._hls_running: bool = False
         self._hls_watch_task: asyncio.Task | None = None
+        # RTSP→HLS state
+        self._rtsp_hls_process: asyncio.subprocess.Process | None = None
+        self._rtsp_hls_running: bool = False
+        self._rtsp_hls_watch_task: asyncio.Task | None = None
 
     # ── Properties ──
 
@@ -40,6 +44,10 @@ class StreamManager:
     @property
     def hls_active(self) -> bool:
         return self._hls_running and self._hls_process is not None and self._hls_process.returncode is None
+
+    @property
+    def rtsp_hls_active(self) -> bool:
+        return self._rtsp_hls_running and self._rtsp_hls_process is not None and self._rtsp_hls_process.returncode is None
 
     # ── MJPEG proxy ──
 
@@ -188,15 +196,105 @@ class StreamManager:
         self._hls_watch_task = None
         await self._kill_hls_process()
 
+    # ── RTSP→HLS (copy, no transcode) ──
+
+    async def _kill_rtsp_hls_process(self) -> None:
+        if self._rtsp_hls_process and self._rtsp_hls_process.returncode is None:
+            self._rtsp_hls_process.terminate()
+            try:
+                await asyncio.wait_for(self._rtsp_hls_process.wait(), timeout=5)
+            except asyncio.TimeoutError:
+                self._rtsp_hls_process.kill()
+                try:
+                    await asyncio.wait_for(self._rtsp_hls_process.wait(), timeout=2)
+                except asyncio.TimeoutError:
+                    pass
+        self._rtsp_hls_process = None
+
+    async def _launch_rtsp_hls(self) -> None:
+        await self._kill_rtsp_hls_process()
+        self._clean_hls()
+        cmd = [
+            "ffmpeg", "-y",
+            "-rtsp_transport", "tcp",
+            "-i", CAM_STREAM_RTSP,
+            "-c:v", "copy",
+            "-f", "hls",
+            "-hls_time", str(HLS_SEGMENT_TIME),
+            "-hls_list_size", str(HLS_LIST_SIZE),
+            "-hls_flags", "delete_segments+append_list",
+            str(HLS_OUTPUT_DIR / "live.m3u8"),
+        ]
+        log.info("Starting RTSP HLS: %s", " ".join(cmd))
+        self._rtsp_hls_process = await asyncio.create_subprocess_exec(
+            *cmd,
+            stdout=asyncio.subprocess.DEVNULL,
+            stderr=asyncio.subprocess.PIPE,
+        )
+
+    async def start_rtsp_hls(self) -> None:
+        if self.rtsp_hls_active:
+            return
+        # Stop MJPEG-based HLS if running — they share the output dir
+        if self.hls_active:
+            await self.stop_hls()
+        self._rtsp_hls_running = True
+        await self._launch_rtsp_hls()
+        self._rtsp_hls_watch_task = asyncio.create_task(self._watch_rtsp_hls())
+
+    async def _watch_rtsp_hls(self) -> None:
+        assert self._rtsp_hls_process is not None
+        stderr = b""
+        try:
+            data = await self._rtsp_hls_process.stderr.read()  # type: ignore[union-attr]
+            if data:
+                stderr = data
+        except Exception:
+            pass
+        await self._rtsp_hls_process.wait()
+        if not self._rtsp_hls_running:
+            return
+        log.warning("RTSP ffmpeg exited with code %s", self._rtsp_hls_process.returncode)
+        if stderr:
+            log.warning("RTSP ffmpeg stderr (last 500): %s", stderr[-500:].decode(errors="replace"))
+        for attempt in range(5):
+            if not self._rtsp_hls_running:
+                return
+            delay = min(2 ** attempt, 30)
+            log.info("Restarting RTSP HLS in %ds (attempt %d)", delay, attempt + 1)
+            await asyncio.sleep(delay)
+            if not self._rtsp_hls_running:
+                return
+            await self._launch_rtsp_hls()
+            await asyncio.sleep(5)
+            if not self._rtsp_hls_running:
+                return
+            if self.rtsp_hls_active and (HLS_OUTPUT_DIR / "live.m3u8").exists():
+                log.info("RTSP HLS restart succeeded")
+                self._rtsp_hls_watch_task = asyncio.create_task(self._watch_rtsp_hls())
+                return
+        log.error("RTSP HLS failed after all retries")
+        self._rtsp_hls_running = False
+        await self._kill_rtsp_hls_process()
+
+    async def stop_rtsp_hls(self) -> None:
+        self._rtsp_hls_running = False
+        if self._rtsp_hls_watch_task and not self._rtsp_hls_watch_task.done():
+            self._rtsp_hls_watch_task.cancel()
+        self._rtsp_hls_watch_task = None
+        await self._kill_rtsp_hls_process()
+
     # ── Status ──
 
     def status(self) -> dict:
         return {
             "mjpeg_clients": self._mjpeg_clients,
             "hls_active": self.hls_active,
+            "rtsp_hls_active": self.rtsp_hls_active,
             "hls_ready": (HLS_OUTPUT_DIR / "live.m3u8").exists(),
-            "running": self.mjpeg_active or self.hls_active,
+            "running": self.mjpeg_active or self.hls_active or self.rtsp_hls_active,
         }
 
     async def stop(self) -> None:
         await self.stop_hls()
+        await self.stop_rtsp_hls()

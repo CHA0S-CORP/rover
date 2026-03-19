@@ -99,7 +99,10 @@ async def test_files_delete(client):
 async def test_stream_status(client):
     resp = await client.get("/api/stream/status")
     assert resp.status_code == 200
-    assert resp.json()["running"] is False
+    data = resp.json()
+    assert data["running"] is False
+    assert "hls_active" in data
+    assert "mjpeg_clients" in data
 
 
 @pytest.mark.asyncio
@@ -107,10 +110,14 @@ async def test_embed_page(client):
     resp = await client.get("/embed")
     assert resp.status_code == 200
     assert "hls.js" in resp.text
+    assert "mjpeg" in resp.text
 
 
 @pytest.mark.asyncio
 async def test_embed_snippet(client):
     resp = await client.get("/embed/snippet")
     assert resp.status_code == 200
-    assert "iframe" in resp.json()
+    data = resp.json()
+    assert "iframe" in data
+    assert "mjpeg" in data
+    assert "hls_url" in data

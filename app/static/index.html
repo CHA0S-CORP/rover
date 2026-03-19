@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rover - Dashcam Control</title>
     <link rel="stylesheet" href="/style.css">
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
 </head>
 <body>
     <header>
@@ -16,10 +15,16 @@
     <main>
         <section class="player">
             <h2>Live View</h2>
-            <video id="video" muted autoplay playsinline></video>
+            <div class="video-wrap">
+                <img id="mjpeg" class="dashcam-video" alt="Dashcam stream">
+                <div id="stream-overlay" class="stream-overlay">Click Start Stream</div>
+            </div>
             <div class="player-controls">
                 <button id="btn-stream-start" class="primary">Start Stream</button>
                 <button id="btn-stream-stop" disabled>Stop Stream</button>
+                <button id="btn-snapshot">Snapshot</button>
+                <button id="btn-hls-start">Start HLS</button>
+                <button id="btn-hls-stop" disabled>Stop HLS</button>
                 <span id="stream-status" style="align-self:center;font-size:0.8rem;color:#888;margin-left:auto;"></span>
             </div>
         </section>
@@ -45,8 +50,12 @@
                         <div class="value" id="stat-recording">--</div>
                     </div>
                     <div class="status-item">
-                        <div class="label">Stream</div>
-                        <div class="value" id="stat-stream">Off</div>
+                        <div class="label">MJPEG</div>
+                        <div class="value" id="stat-mjpeg">Off</div>
+                    </div>
+                    <div class="status-item">
+                        <div class="label">HLS</div>
+                        <div class="value" id="stat-hls">Off</div>
                     </div>
                 </div>
             </section>
@@ -65,6 +74,16 @@
                     <button id="btn-mode">Set Mode</button>
                 </div>
             </section>
+
+            <section>
+                <h2>Embed</h2>
+                <div class="embed-info">
+                    <p class="embed-label">MJPEG (low latency):</p>
+                    <code class="embed-code">&lt;img src="/api/stream/mjpeg"&gt;</code>
+                    <p class="embed-label">HLS (embeddable video):</p>
+                    <code class="embed-code">&lt;iframe src="/embed"&gt;</code>
+                </div>
+            </section>
         </div>
 
         <section class="files-section">
@@ -76,7 +95,9 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th>Camera</th>
                         <th>Size</th>
+                        <th>Date</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

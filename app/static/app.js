@@ -1,59 +1,48 @@
 const $ = (sel) => document.querySelector(sel);
-let hls = null;
 let statusInterval = null;
 
-// --- Stream ---
+// --- MJPEG Stream ---
 
-function initStream() {
-    const video = $("#video");
-    const src = "/hls/live.m3u8";
-
-    if (hls) {
-        hls.destroy();
-        hls = null;
-    }
-
-    if (Hls.isSupported()) {
-        hls = new Hls({ liveSyncDurationCount: 3, liveMaxLatencyDurationCount: 5 });
-        hls.loadSource(src);
-        hls.attachMedia(video);
-        hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
-        hls.on(Hls.Events.ERROR, (_e, data) => {
-            if (data.fatal) {
-                $("#stream-status").textContent = "Stream error - retrying...";
-                setTimeout(initStream, 3000);
-            }
-        });
-    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = src;
-        video.addEventListener("loadedmetadata", () => video.play());
-    }
-}
-
-async function startStream() {
+function startMjpeg() {
+    const img = $("#mjpeg");
+    const overlay = $("#stream-overlay");
+    img.src = "/api/stream/mjpeg?" + Date.now();
+    img.onload = () => { overlay.classList.add("hidden"); };
+    img.onerror = () => {
+        overlay.textContent = "Stream error";
+        overlay.classList.remove("hidden");
+    };
     $("#btn-stream-start").disabled = true;
-    $("#stream-status").textContent = "Starting...";
-    try {
-        await fetch("/api/stream/start", { method: "POST" });
-        // Wait for HLS segments to appear
-        setTimeout(() => {
-            initStream();
-            $("#btn-stream-stop").disabled = false;
-            $("#stream-status").textContent = "";
-        }, 3000);
-    } catch (e) {
-        $("#stream-status").textContent = "Failed to start";
-        $("#btn-stream-start").disabled = false;
-    }
+    $("#btn-stream-stop").disabled = false;
 }
 
-async function stopStream() {
-    if (hls) { hls.destroy(); hls = null; }
-    $("#video").src = "";
-    await fetch("/api/stream/stop", { method: "POST" });
+function stopMjpeg() {
+    const img = $("#mjpeg");
+    img.src = "";
+    $("#stream-overlay").textContent = "Stream stopped";
+    $("#stream-overlay").classList.remove("hidden");
     $("#btn-stream-start").disabled = false;
     $("#btn-stream-stop").disabled = true;
-    $("#stream-status").textContent = "";
+}
+
+function takeSnapshot() {
+    window.open("/api/stream/snapshot", "_blank");
+}
+
+// --- HLS ---
+
+async function startHls() {
+    $("#btn-hls-start").disabled = true;
+    await fetch("/api/stream/hls/start", { method: "POST" });
+    $("#btn-hls-stop").disabled = false;
+    $("#stream-status").textContent = "HLS starting...";
+    setTimeout(() => { $("#stream-status").textContent = ""; }, 5000);
+}
+
+async function stopHls() {
+    await fetch("/api/stream/hls/stop", { method: "POST" });
+    $("#btn-hls-start").disabled = false;
+    $("#btn-hls-stop").disabled = true;
 }
 
 // --- Status polling ---
@@ -84,7 +73,10 @@ async function pollStatus() {
     try {
         const res = await fetch("/api/stream/status");
         const s = await res.json();
-        $("#stat-stream").textContent = s.running ? "Live" : "Off";
+        $("#stat-mjpeg").textContent = s.mjpeg_clients > 0 ? `${s.mjpeg_clients} viewer${s.mjpeg_clients > 1 ? "s" : ""}` : "Off";
+        $("#stat-hls").textContent = s.hls_active ? (s.hls_ready ? "Ready" : "Starting") : "Off";
+        $("#btn-hls-start").disabled = s.hls_active;
+        $("#btn-hls-stop").disabled = !s.hls_active;
     } catch {}
 }
 
@@ -108,10 +100,12 @@ async function camAction(url, method = "POST", body = null) {
 
 // --- File browser ---
 
-function formatSize(bytes) {
-    if (!bytes) return "--";
-    const n = parseInt(bytes, 10);
-    if (isNaN(n)) return bytes;
+function formatSize(sizeStr) {
+    if (!sizeStr || sizeStr === "--") return "--";
+    // Camera returns human-readable like "260.0M"
+    if (/[KMGT]$/i.test(sizeStr)) return sizeStr + "B";
+    const n = parseInt(sizeStr, 10);
+    if (isNaN(n)) return sizeStr;
     if (n < 1024) return n + " B";
     if (n < 1048576) return (n / 1024).toFixed(1) + " KB";
     if (n < 1073741824) return (n / 1048576).toFixed(1) + " MB";
@@ -120,22 +114,25 @@ function formatSize(bytes) {
 
 async function fetchFiles() {
     const tbody = $("#files-body");
-    tbody.innerHTML = "<tr><td colspan='3'>Loading...</td></tr>";
+    tbody.innerHTML = "<tr><td colspan='5'>Loading...</td></tr>";
     try {
         const res = await fetch("/api/files");
         const data = await res.json();
         tbody.innerHTML = "";
         if (!data.files || data.files.length === 0) {
-            tbody.innerHTML = "<tr><td colspan='3'>No files found</td></tr>";
+            tbody.innerHTML = "<tr><td colspan='5'>No files found</td></tr>";
             return;
         }
         for (const f of data.files) {
             const fpath = f.fpath || "";
-            const name = fpath.split("\\").pop().split("/").pop() || fpath;
+            const name = f.name || fpath.split("/").pop();
+            const camera = f.camera || "";
             const tr = document.createElement("tr");
             tr.innerHTML = `
                 <td class="filename" data-path="${fpath}">${name}</td>
+                <td>${camera}</td>
                 <td>${formatSize(f.size)}</td>
+                <td>${f.date || ""}</td>
                 <td class="actions">
                     <button onclick="downloadFile('${fpath}')">Download</button>
                     <button class="danger" onclick="deleteFile('${fpath}', this)">Delete</button>
@@ -145,7 +142,7 @@ async function fetchFiles() {
             tbody.appendChild(tr);
         }
     } catch {
-        tbody.innerHTML = "<tr><td colspan='3'>Failed to load files</td></tr>";
+        tbody.innerHTML = "<tr><td colspan='5'>Failed to load files</td></tr>";
     }
 }
 
@@ -161,17 +158,17 @@ async function deleteFile(path, btn) {
 }
 
 function playFile(path) {
-    const video = $("#video");
-    if (hls) { hls.destroy(); hls = null; }
-    video.src = `/api/files/download?path=${encodeURIComponent(path)}`;
-    video.play();
+    downloadFile(path);
 }
 
 // --- Init ---
 
 document.addEventListener("DOMContentLoaded", () => {
-    $("#btn-stream-start").addEventListener("click", startStream);
-    $("#btn-stream-stop").addEventListener("click", stopStream);
+    $("#btn-stream-start").addEventListener("click", startMjpeg);
+    $("#btn-stream-stop").addEventListener("click", stopMjpeg);
+    $("#btn-snapshot").addEventListener("click", takeSnapshot);
+    $("#btn-hls-start").addEventListener("click", startHls);
+    $("#btn-hls-stop").addEventListener("click", stopHls);
     $("#btn-rec-start").addEventListener("click", () => camAction("/api/record/start"));
     $("#btn-rec-stop").addEventListener("click", () => camAction("/api/record/stop"));
     $("#btn-photo").addEventListener("click", () => camAction("/api/photo"));

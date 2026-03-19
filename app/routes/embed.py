@@ -10,70 +10,80 @@ EMBED_HTML = """\
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Rover Stream</title>
-<script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
+<script src="https://cdn.jsdelivr.net/npm/hls.js@1/dist/hls.min.js"></script>
 <style>
 *{margin:0;padding:0}
 html,body{width:100%;height:100%;overflow:hidden;background:#000}
-video{width:100%;height:100%;object-fit:contain}
+video,img{width:100%;height:100%;object-fit:contain}
 #msg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#888;font-family:sans-serif;font-size:1.2rem}
 </style>
 </head>
 <body>
 <div id="msg">Connecting...</div>
-<video id="v" muted autoplay playsinline></video>
+<video id="v" muted autoplay playsinline style="display:none"></video>
+<img id="mjpeg" style="display:none" alt="">
 <script>
 const video = document.getElementById("v");
+const mjpeg = document.getElementById("mjpeg");
 const msg = document.getElementById("msg");
+const base = location.origin;
 
-// Resolve HLS URL relative to this page's origin (works when embedded cross-origin)
-const base = new URL(".", document.currentScript ? document.currentScript.src : location.href).origin;
-const hlsUrl = base + "/hls/live.m3u8";
-
-let hls;
-let started = false;
-
-async function ensureStream() {
+// Try HLS first (if transcoder is running), fall back to MJPEG
+async function init() {
     try {
-        const res = await fetch(base + "/api/stream/status");
-        const s = await res.json();
-        if (!s.running) {
-            msg.textContent = "Starting stream...";
-            await fetch(base + "/api/stream/start", { method: "POST" });
-            await new Promise(r => setTimeout(r, 3000));
+        // Start HLS transcoder if not running
+        const status = await fetch(base + "/api/stream/status").then(r => r.json());
+        if (!status.hls_active) {
+            msg.textContent = "Starting HLS stream...";
+            await fetch(base + "/api/stream/hls/start", { method: "POST" });
+            await new Promise(r => setTimeout(r, 4000));
         }
-        started = true;
-        initPlayer();
-    } catch(e) {
-        msg.textContent = "Cannot reach Rover";
-        setTimeout(ensureStream, 5000);
-    }
+        const check = await fetch(base + "/api/stream/status").then(r => r.json());
+        if (check.hls_ready) {
+            startHls();
+            return;
+        }
+    } catch(e) {}
+    // Fall back to MJPEG
+    startMjpeg();
 }
 
-function initPlayer() {
+function startHls() {
     msg.style.display = "none";
+    video.style.display = "block";
+    const src = base + "/hls/live.m3u8";
     if (Hls.isSupported()) {
-        hls = new Hls({ liveSyncDurationCount: 3, liveMaxLatencyDurationCount: 5 });
-        hls.loadSource(hlsUrl);
+        const hls = new Hls({ liveSyncDurationCount: 3, liveMaxLatencyDurationCount: 5 });
+        hls.loadSource(src);
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED, () => video.play());
         hls.on(Hls.Events.ERROR, (_e, data) => {
             if (data.fatal) {
-                msg.style.display = "flex";
-                msg.textContent = "Stream interrupted, retrying...";
                 hls.destroy();
-                setTimeout(initPlayer, 3000);
+                startMjpeg();
             }
         });
     } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-        video.src = hlsUrl;
-        video.addEventListener("loadedmetadata", () => video.play());
+        video.src = src;
+        video.play();
     } else {
-        msg.style.display = "flex";
-        msg.textContent = "HLS not supported in this browser";
+        startMjpeg();
     }
 }
 
-ensureStream();
+function startMjpeg() {
+    msg.style.display = "none";
+    video.style.display = "none";
+    mjpeg.style.display = "block";
+    mjpeg.src = base + "/api/stream/mjpeg?" + Date.now();
+    mjpeg.onerror = () => {
+        msg.style.display = "flex";
+        msg.textContent = "Stream unavailable";
+        setTimeout(init, 5000);
+    };
+}
+
+init();
 </script>
 </body>
 </html>
@@ -82,15 +92,16 @@ ensureStream();
 
 @router.get("/embed", response_class=HTMLResponse)
 async def embed_player():
-    """Minimal self-contained HLS player page for iframe embedding."""
+    """Embeddable stream player. Uses HLS if available, falls back to MJPEG."""
     return EMBED_HTML
 
 
 @router.get("/embed/snippet")
 async def embed_snippet():
-    """Returns HTML snippet for embedding the stream in an external page."""
     return {
         "iframe": '<iframe src="{rover_url}/embed" style="width:640px;height:360px;border:none" allow="autoplay" allowfullscreen></iframe>',
+        "mjpeg": '<img src="{rover_url}/api/stream/mjpeg" style="width:640px;height:360px">',
         "hls_url": "/hls/live.m3u8",
-        "note": "Replace {rover_url} with your Rover instance URL, e.g. http://raspberrypi:8080",
+        "snapshot_url": "/api/stream/snapshot",
+        "note": "Replace {rover_url} with your Rover URL. Start HLS first: POST /api/stream/hls/start",
     }

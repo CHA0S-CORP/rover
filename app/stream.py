@@ -96,13 +96,27 @@ class StreamManager:
             shutil.rmtree(HLS_OUTPUT_DIR)
         HLS_OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    async def start_hls(self) -> None:
-        if self.hls_active:
-            return
+    async def _kill_hls_process(self) -> None:
+        """Kill the current ffmpeg process if running."""
+        if self._hls_process and self._hls_process.returncode is None:
+            self._hls_process.terminate()
+            try:
+                await asyncio.wait_for(self._hls_process.wait(), timeout=5)
+            except asyncio.TimeoutError:
+                self._hls_process.kill()
+                try:
+                    await asyncio.wait_for(self._hls_process.wait(), timeout=2)
+                except asyncio.TimeoutError:
+                    pass
+        self._hls_process = None
+
+    async def _launch_hls(self) -> None:
+        """Launch a single ffmpeg process. Does NOT set _hls_running."""
+        await self._kill_hls_process()
         self._clean_hls()
-        self._hls_running = True
         cmd = [
             "ffmpeg", "-y",
+            "-rw_timeout", "5000000",  # 5s connect/read timeout (microseconds)
             "-f", "mjpeg",
             "-i", CAM_STREAM_MJPEG,
             "-c:v", "libx264",
@@ -115,12 +129,18 @@ class StreamManager:
             "-hls_flags", "delete_segments+append_list",
             str(HLS_OUTPUT_DIR / "live.m3u8"),
         ]
-        log.info("Starting HLS transcoder: %s", " ".join(cmd))
+        log.info("Starting HLS: %s", " ".join(cmd))
         self._hls_process = await asyncio.create_subprocess_exec(
             *cmd,
             stdout=asyncio.subprocess.DEVNULL,
             stderr=asyncio.subprocess.PIPE,
         )
+
+    async def start_hls(self) -> None:
+        if self.hls_active:
+            return
+        self._hls_running = True
+        await self._launch_hls()
         self._hls_watch_task = asyncio.create_task(self._watch_hls())
 
     async def _watch_hls(self) -> None:
@@ -145,25 +165,28 @@ class StreamManager:
             delay = min(2 ** attempt, 30)
             log.info("Restarting HLS in %ds (attempt %d)", delay, attempt + 1)
             await asyncio.sleep(delay)
-            self._clean_hls()
-            await self.start_hls()
-            await asyncio.sleep(3)
-            if self.hls_active:
+            if not self._hls_running:
+                return
+            await self._launch_hls()
+            # Wait to see if it produces output
+            await asyncio.sleep(5)
+            if not self._hls_running:
+                return
+            if self.hls_active and (HLS_OUTPUT_DIR / "live.m3u8").exists():
+                log.info("HLS restart succeeded")
+                # Continue watching the new process
+                self._hls_watch_task = asyncio.create_task(self._watch_hls())
                 return
         log.error("HLS transcoder failed after all retries")
         self._hls_running = False
+        await self._kill_hls_process()
 
     async def stop_hls(self) -> None:
         self._hls_running = False
-        if self._hls_process and self._hls_process.returncode is None:
-            self._hls_process.terminate()
-            try:
-                await asyncio.wait_for(self._hls_process.wait(), timeout=5)
-            except asyncio.TimeoutError:
-                self._hls_process.kill()
         if self._hls_watch_task and not self._hls_watch_task.done():
             self._hls_watch_task.cancel()
-        self._hls_process = None
+        self._hls_watch_task = None
+        await self._kill_hls_process()
 
     # ── Status ──
 

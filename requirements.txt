@@ -2,3 +2,6 @@ fastapi
 uvicorn[standard]
 httpx
 aiofiles
+pytest
+pytest-asyncio
+httpx[http2]

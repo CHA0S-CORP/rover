@@ -50,9 +50,7 @@ async def take_photo():
 @router.get("/config")
 async def config():
     try:
-        import xml.etree.ElementTree as ET
-        root = await _client().get_config()
-        return {"config": ET.tostring(root, encoding="unicode")}
+        return await _client().get_config()
     except Exception as e:
         raise HTTPException(502, str(e))
 

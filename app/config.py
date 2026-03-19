@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-CAM_IP = os.environ.get("CAM_IP", "192.168.1.254")
+CAM_IP = os.environ.get("CAM_IP", "192.168.1.252")
 CAM_API_BASE = f"http://{CAM_IP}/?custom=1"
 CAM_STREAM_RTSP = f"rtsp://{CAM_IP}/xxx.mov"
 CAM_STREAM_HTTP = f"http://{CAM_IP}:8192"

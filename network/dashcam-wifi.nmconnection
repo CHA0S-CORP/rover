@@ -16,6 +16,7 @@ key-mgmt=none
 method=auto
 never-default=true
 route-metric=1000
+dns-search=
 
 [ipv6]
 method=ignore

@@ -1,0 +1,2873 @@
+@i%^F>ZU
+^.e`u
+`<5q
+yCRL(
+P"Vf
+%qZ5
+<nRC
+a[L)
+__gmon_start__
+_ITM_deregisterTMCloneTable
+_ITM_registerTMCloneTable
+__cxa_finalize
+pthread_mutex_lock
+pthread_mutex_unlock
+malloc
+calloc
+realloc
+free
+pthread_self
+clock_gettime
+memcpy
+pthread_setname_np
+mg_get_valid_options
+fopen64
+fclose
+memset
+tolower
+mg_strncasecmp
+mg_strcasecmp
+strlen
+vsnprintf
+strcmp
+mg_get_option
+mg_get_context
+mg_get_user_data
+mg_get_user_context_data
+mg_get_thread_pointer
+pthread_getspecific
+mg_set_user_connection_data
+mg_get_user_connection_data
+mg_get_server_ports
+ntohs
+getnameinfo
+gmtime
+strftime
+flockfile
+fprintf
+fputs
+fputc
+fflush
+funlockfile
+mg_cry
+mg_version
+mg_get_request_info
+mg_get_response_info
+mg_url_encode
+strncmp
+sprintf
+mg_get_request_link
+strcspn
+memmove
+strspn
+mg_get_header
+strchr
+memchr
+mg_get_response_code_text
+mg_printf
+mg_response_header_start
+mg_response_header_add
+mg_response_header_add_lines
+mg_response_header_send
+mg_write
+atoi
+mg_send_http_error
+mg_send_http_ok
+mg_send_http_redirect
+fcntl64
+__errno_location
+strerror
+mg_start_thread
+pthread_attr_init
+pthread_attr_setdetachstate
+pthread_create
+pthread_attr_destroy
+pthread_join
+poll
+fwrite
+ferror
+usleep
+strtod
+fileno
+recv
+mg_read
+strtoul
+__ctype_b_loc
+mg_send_chunk
+mg_url_decode
+mg_get_var
+mg_get_var2
+mg_split_form_urlencoded
+mg_get_cookie
+mg_base64_encode
+mg_base64_decode
+strstr
+__isoc99_sscanf
+timegm
+mg_get_builtin_mime_type
+mg_md5
+strtoull
+fgets
+memcmp
+mg_check_digest_access_authentication
+mg_lock_context
+mg_unlock_context
+mg_send_digest_access_authentication_request
+mg_modify_passwords_file_ha1
+fchmod
+mg_modify_passwords_file
+getaddrinfo
+freeaddrinfo
+htons
+socket
+connect
+getsockopt
+localtime
+opendir
+readdir64
+closedir
+sendfile64
+fseeko64
+fread
+mg_send_file_body
+mg_send_file
+mg_send_mime_file2
+mg_send_mime_file
+mkdir
+remove
+mg_store_body
+strtol
+strrchr
+popen
+pclose
+fgetc
+mg_lock_connection
+mg_unlock_connection
+atof
+ntohl
+mg_websocket_write
+htonl
+mg_websocket_client_write
+mg_handle_form_request
+mg_set_request_handler
+mg_set_websocket_handler
+mg_set_websocket_handler_with_subprotocols
+mg_set_auth_handler
+setsockopt
+bind
+listen
+getsockname
+getuid
+getpwnam
+setgid
+setgroups
+setuid
+pthread_setspecific
+shutdown
+mg_close_connection
+pthread_mutex_destroy
+pthread_mutex_init
+mg_connect_client_secure
+mg_connect_client
+strtoll
+mg_get_response
+mg_download
+sigaction
+mg_connect_websocket_client
+mg_connect_websocket_client_secure
+mg_connect_websocket_client_extensions
+mg_connect_websocket_client_secure_extensions
+pthread_cond_wait
+pthread_cond_signal
+accept
+pthread_cond_broadcast
+pthread_cond_destroy
+mg_stop
+uname
+mg_init_library
+socketpair
+mg_start2
+pthread_cond_init
+mg_start
+mg_start_domain2
+mg_start_domain
+mg_check_feature
+strcpy
+mg_get_system_info
+strcat
+mg_get_context_info
+mg_disable_connection_keep_alive
+pthread_key_create
+pthread_mutexattr_init
+pthread_mutexattr_settype
+pthread_mutexattr_destroy
+pthread_key_delete
+mg_exit_library
+CreateMutex
+DestroyMutex
+UnLockMutex
+CreateCond
+DestroyCond
+CondSignal
+CondWait
+CreateThread
+SetupThread
+sigemptyset
+sigaddset
+pthread_sigmask
+pthread_exit
+WaitThread
+samGPSServerGetGPSPacket
+stderr
+module_samGPSServer_start
+document_root
+JPGSession_Init
+JPGSession_Deinit
+startStreaming
+stopStreaming
+samJPGServer_writeFrame
+cb_connection_closed
+module_samjpgweb_start
+raise
+libc.so.6
+__xstat64
+GLIBC_2.28
+GLIBC_2.7
+GLIBC_2.17
+GLIBC_2.4
+J{DzD
+x`{h
+x`{h
+x`xh
+x`9`9hxh
+x`9`9hxh
+x`xh
+F;`;h{`{h
+"F+F
+x`9`{h
+h{e{h
+i;e{h[i
+;h{f6
+@"9h
+;h;f
+zm;m
+sczm
+D;e:m
+D{n3
+D{ezm;m
+sczm
+D;e:m
+D{ezm;m
+D{n 3
+sczm
+D{n$3
+D{n(3
+$CO;
+D;e:m
+D{n,3
+D{ezm;m
+D{n03
+sczm
+D{n43
+D{n83
+D;e:m
+D{n<3
+D{ezm
+D{n,3
+D;e:m
+33:m
+D{ezm
+D{n(3
+D{n<3
+D;e:m
+33:m
+D{ezm
+D{n$3
+D{n83
+D{n3
+D;e:m
+D{n 3
+33:m
+D{ezm
+D{n43
+D;e:m
+D{n03
+33:m
+D{ezm;mZ@
+3szm
+m{mZ@;mZ@
+D{n 3
+mZ@{mZ@;m
+D{n,3
+D;e:m
+mZ@{m
+D{n83
+s#:m
+D{ezm;mZ@
+3szm
+m{mZ@;mZ@
+mZ@{mZ@;m
+D;e:m
+mZ@{m
+D{n(3
+s#:m
+D{ezm;mZ@
+D{n43
+3szm
+m{mZ@;mZ@
+mZ@{mZ@;m
+D{n3
+D;e:m
+mZ@{m
+s#:m
+D{ezm;mZ@
+D{n$3
+3szm
+m{mZ@;mZ@
+D{n03
+mZ@{mZ@;m
+D{n<3
+D;e:m
+mZ@{m
+s#:m
+C;mZ@
+C{mZ@
+mZ@;m
+D{n83
+lZ@{m
+C;mZ@
+D{n03
+C{mZ@
+D{n3
+mZ@;m
+D{n(3
+lZ@{m
+C;mZ@
+D{n 3
+C{mZ@
+D{n<3
+mZ@;m
+lZ@{m
+D{n43
+C;mZ@
+C{mZ@
+D{n,3
+mZ@;m
+lZ@{m
+D{n$3
+D{e{h
+a{hZi
+D{hZa
+x`{h
+"Z`{hZh{h
+`zhB
+`zhJ
+`zhM
+azhE
+h{b{h;b
+hZh{h[
+h[hZ
+{h{a
+Dziyj
+D?+(
+zj{i
+D{b:j{i
+{j@3{b;j@;;b;j?+
+3:jyj
+x`9`
+" {i
+3{a{i
+" {i
+{i:h
+3{a{i
+x`{h
+x`9`;h
+`z`;`;h
+xa{h
+xa;h
+x`{h
+#{a{h
+{a{i
+;{`{h
+x`9`{hZ
+F;hZ
+xa{i
+x`9`xh
+x`xh
+x`9`xh
+8a8h
+zh{i
+zh{i
+3{a:i
+`z`;`;h
+{j:j9hxh
+xa{i
+{i:h
+#;a;i
+K{D
+;{a{izh
+`z`;`
+{a{i
+;hzh
+x`9`8h
+x`{h
+x`{h
+x`xh
+x`{h
+x`9`{h
+x`{h
+#{aZ
+hZh{i(!
+F;i[
+hZh{i(!
+hZh{i(!
+hZh{i(!
+hZh{i(!
+3;a{i
+3{azi
+`z`{h
+#{a{i
+x`9`{hZh;h[h
+8;2!
+8;*IyD
+x`9`{h
+{h:h
+Hszh
+IyDxh
+pGvo
+x`{h
+x`{h
+x`{h
+`{h[h
+`z`;`{h
+0;fP#{g{n
+"UIyD
+@K{D
+<K{D
+0-JzD
+0;g:n{o
+!IyD
+@0{m
+D;b:j
+F9jxj
+3{bzj;j
+D{a;j{b
+3{bzj{i
+3{azi
+`z`;`
+:i;h
+x`9`{h
+)p{h
+x`{h
+;{a{i
+D{hZ`{h
+x`9`
+;izi
+x`{h
+`z`;`DK{D
++h#`{h
+D<;d
+#{eM
+{m;eC
+{h:m
+Dzhyl
+:m;l
+D;e:m
+3{ezm;l
+x`{h
+"Z`{h
+`z`{h[h
+{hZh{h
+{h[hzh
+hZ`{h[hZ
+{hZ`
+`z`;`
+#;b;h
+x?+<
+zh;j
+zh;j
+x/+0
+;j{a{j
+3{b;j
+3;bzj
+zh;j
+zh;j
+zh{i
+:j{i
+zh;j
+x*+c
+3{bzj
+3{bzh;j
+zh;j
+D=JzD
+zh;j
+8a;i
+zh;j
+:j;i
+xyh;j
+Fzh;j
+3{b;j
+3;bzj
+`z`;`
+a;hzh
+xa{i
+;hzh
+h;a{i
+#{a{h
+{hYh
+<K{Dzi
+#{be
+2 {j
+D{hyj
+DYhzh{j
+DZh{j
+DZ`{j
+zh;j
+DZhyhC
+DZ`;jZ
+{h9j
+3;b{h[h:j
+{h[hZ
+{hZ`{hZh{h
+{h[hzh
+3{b{h[hzj
+x`9`{h
+#:hxh
+x`{h
+x`{h
+x`{h
+x`xh
+2zhT3
+2zhT3
+"Z`{h
+2zhT3
+2zhT3
+x`{h
+j{a{h
+,5;a;ic+
+s;a{i
+K{D{a{h
+;izi
+IyDxh
+x`9`
+;hc+
+{h[h
+{h:h
+,%{h
+`z`;`
+2{a{i?+
+h{iT3
+DY`;h
+8a;i
+Fyh8i
+;h:i
+h{iT3
+h{iT3
+h{iT3
+h{iT3
+h{iT3
+h{iT3
+h{iT3
+h{iT3
+DZh8
+{h[h
+#{e6
+zh{mT3
+DYhzh{mT3
+F4IyDxh
+zh{mT3
+F/K{D
+#;ezh{mT3
+F'K{D
+3{e{h
+IyDxh
+IyDxh
+{h[h
+IyDxh
+x`{h
+IyDxh
+IyDxh
+x`{h
+IyDxh
+x`9`;hd;@
+~K{D
+~K{D
+}K{D
+}K{D
+|K{D
+|K{D
+{K{D
+{K{D
+zK{D
+zK{D
+yK{D
+yK{D
+xK{D
+xK{D
+wK{D
+wK{D
+vK{D
+vK{D
+uK{D
+uK{D
+tK{D
+tK{D
+sK{D
+sK{D
+rK{D
+rK{D
+qK{D
+qK{D
+pK{D
+pK{D
+oK{D
+oK{D
+nK{D~
+nK{D{
+mK{Dx
+mK{Du
+lK{Dr
+lK{Do
+kK{Dl
+kK{Di
+jK{Df
+jK{Dc
+iK{D`
+iK{D]
+hK{DZ
+hK{DW
+gK{DT
+gK{DQ
+fK{DN
+fK{DK
+eK{DH
+eK{DE
+bK{D
+`JzD
+;hc+
+[K{D,
+WK{D"
+SK{D
+NK{D
+JK{D
+IK{D
+3'JzD'IyD
+AW$7
+x`9`
+i9hxh
+(K{D
+h IyD
+`z`{h
+{`{h@
+`z`{h
+#:n{h
+x`9`
+;hzh
+[K{D
+FWIyD
+FTIyD
+SK{D
+NK{D
+IK{D
+FK{D
+{b>K{D
+CFC@
+aKFK@
+9a+C{a/K{D
+-K{D
+`z`;`O
+xa{i
+h;a{i
+{`{h
+xa9a
+F{d8i
+h;c'
+#;c$
+xd{l
+#;c;k
+#{d{l
+{i[i
+zk{i
+b{i[i
+`z`;`O
+#K{D
+;hzh
+8a;i
+zi;i
+xa9a
+#;c{i
+xc{k
+#;c{k
+xc{k
+#;c{k
+#{c;i
+`z`;`
+?K{D
+xa{i
+c:h{i
+;`;h
+xc9c
+D{d;n
+Fyl8k
+{b{k
+4;n:k
+D;c;m:kyk
+x`xh
+aza{i
+x;+ 
+xg{o
+#;g<
+45zi
+0%yh
+8a:i
+4%;i
+zh!IyD
+j{bzh
+D{b{j
+`z`O
+{h{a
+`z`;`;j;a;i:h
+xa{i
+;j;a:i9h
+{izh
+;j;a
+h{iY
+;i:h
+;j;a;i:hyh
+`z`;`
+x%+h
+h{i[
+{i0;
+{iW;
+h;i[
+x`xh
+`z`;`
+;hzh
+`z`;`;h
+D{aO
+h{bK
+x&+?
+x=+9
+iyjxh
+D{bzi{j
+F&!xj
+8b;j
+{i;b:j{j
+:j{j
+:hxj
+3{bzj
+hZ`{i
+3{a&!
+`z`;`O
+h{b{j
+D{aT
+x=+J
+x +A
+D{b !xj
+8b;j
+{i;b;j
+;;b{j
+3{b;j
+;;b:j{j
+:j{j
+Fyjxh
+xb{j
+`z`;`;h
+#;b;j{bj
+#{a{j
+#;a8K{D
+D;jY
+9byh
+p3K{D
+D;jY
+9byh
+(K{D
+D;jY
+9byh
+D;jY
+9byh
+3{bzj
+:bzh
+:bzh
+;h:j
+`z`;`O
+#{a;h
+F{t{|
+F;t;|
+xh{i
+3{a{|
+xh{i
+3{a;|
+zh{i
+zh{i
+3{a;h
+;hzi
+x`{h
+,K{D
+)K{D
+%K{D
+"K{D
+x`{h
+`z`;`
+xa{i
+x`9`
+JzD
+F@IyDxh
+F4IyDxh
+F)IyDxh
+IyDxh
+k;a;l
+x`{h{a{h;a;i
+;i/"
+3;a;i
+{h;a
+"zK{D
+3;a}
+"tK{D
+3;ao
+nK{D
+"hK{D
+3;azh{i
+;{azh{i
+[K{D
+pzh{i
+;{azh{i
+MK{D
+JK{D
+3{a;i
+3;a;i
+p{h;a;i{aM
+x.+/
+h;azi{h
+x/+1
+;{a-
+h;a&
+za."
+3;a:i
+x/+
+za/"
+3;a;i
+za:i
+3;a;i
+x`xh
+#{a9
+%K{D
+F{i"
+F{i"
+F{i"
+F{i"
+3{aK{D
+F{i"
+F{hZ`
+`{hZ
+`z`;`
+8TK{D
+QK{D
+`z`;`;h
+3{bxj
+8b{h{a
+h9jxj
+#zJzDzIyD
+\#tJzDtIyD
+#mJzDmIyD
+iK{D
+dK{D
+^K{D
+YK{D
+SK{D
+NK{D
+HK{D
+`z`{h
+x:+^
+zK{D
+zK{D
+#xJzD
+tK{D
+sK{D
+#rJzD
+T2:!
+eK{D
+eK{D
+#cJzD
+X2:!
+QK{D
+PK{D
+#OJzD
+1K{D
+F0JzD
+h[j;`
+;h2F)F F
+KK{D
+5K{D
+5K{D
+a33JzD
+x`9`{h
+0;`{h
+ !{h
+$E{h
+IyDxh
+IyDxh
+x`9`{h
+9hxh
+hhIyD
+FSIyD
+9JzD
+`z`;`
+JzDyh
+x`{hO
+`z`;`
+;i{c
+;i[i
+;iYi;i
+i;a;i
+`z`;`
+#{dO
+F;nZ
+#{d{l
++F"F
+qK{D
++F"F
+8d;l
+js+h
+xc{k
+6K{D
+8c;k
+#;d;l
++F"F
+h{a{h
+D;aF
+*K{D
+{i%"
+zi;i
+x`9`;h
+;h[i
+xK{D
+xK{D
+kK{D
+{[K{D
+{JK{D
+{>K{D
+03JzD@!
+@"0IyD
+;h[i
+,K{D
++K{D
+0:hRi
+$JzD
+#JzD
+IyDxh
+`z`{h
+@K{D
+6K{D
+a{i[i
+;i[i
+{i[i
+;i[i
+x`9`{h
+3bJzD
+3[JzD
+DK{D
+(K{D
+(K{D
+c&JzD
+:9Fh
+x`9`;h
+h[h[
+h[h[
+h[h[
+h[hZ
+x`9`
+K{D9hxh
+JzDO
+i;fzK{D
+n{f4
+{neJzD
+{n`JzD
+{n[JzD
+D{f:n
+PK{D;f{h[j
+{h[j
+{h[j
+3>JzD>IyDxh
+2IyDxh
+/K{D
+/K{D
+.K{D.JzD.IyDxh
+8mym{h[j
+)K{D "
+4>0`
+0;:F
+s>F9F
+[K{D
+ZK{D
+ SYJzD
+48UK{DUJzDO
+`z`{h
+`z`{h
+x`9`{h
+L&zDO
+%zDO
+$5{D
+H$zDO
+JzDO
+3;`K
+8uIyD
+3pIyD
+3kIyD
+E_K{D
+3UIyD
+3QJzDQIyD
+hGIyD
+3@IyD
+#"F+F
+x`9`
+"9hxh
+x`9`
+:h@!
+x`9`{h
+IyDxh
+IyDxh
+x`9`
+"9hxh
+`z`;`
+JzD@
+JzDO
+x`9`8h
+48xK{D
+wK{D
+vJzD
+x`9`
+x`9`
+3{a{i?+
+x`xh
+#{a{h
+i{hZ`{hZh{h
+8a;i
+h{hZ`
+:i{i
+#{b{h
+"Z`{hZh{h
+8b;j
+"RIyD
+ic+
+h{hZ`
+:j{j
+`z`;`
+NK{D
+4< `
+bK{D
+[K{D
+ZJzD
+PK{D
+OJzD
+:K{D
+8JzD
+;F1IyD
+,K{D
++JzD
+%JzD
+x`{h
+h>+@
+h+ 
+"bIyD
+SK{D
+RJzD
+h<+&
+h!JzDO
+x`{h
+x`{h
+x`{h
+x`{h
+x`9`
+{h:hS
+"{h9hS
+{h:hC
+{h:hS
+x`9`
+@"9h
+e{h[h
+h{e{h
+h;e{h
+dzm;mZ@
+m{mZ@
+mZ@;m
+e;mO
+;e:m
+lZ@{m
+e{mO
+{ezm;mZ@
+m{mZ@
+mZ@;m
+e;mO
+;e:m
+lZ@{m
+e{mO
+{ezm;mZ@
+m{mZ@
+mZ@;m
+e;mO
+;e:m
+lZ@{m
+e{mO
+{ezm;mZ@
+m{mZ@
+@{mZ@9l
+jY@{iY@
+hK@O
+mZ@yl;kY@
+iY@;iK@O
+s;a;i
+D;mO
+mZ@;m
+l{kY@
+iY@{iK@O
+s{a{i
+D{mO
+e;mO
+;e:m
+lZ@{m
+kY@;jY@
+iK@O
+e{mO
+m{mZ@;mZ@9i
+kY@{jY@
+iK@O
+mZ@{mZ@yi;lY@
+jY@;jK@O
+s;b;j
+i{lY@
+jY@{jK@O
+s{b{j
+D;mO
+lY@;kY@
+jK@O
+D{mO
+e;mO
+;ezm;mZ@
+lZ@9j
+hY@{kY@
+jK@O
+e{mO
+m{mZ@;mZ@yj;iY@
+kY@;kK@O
+s;c;k
+mZ@{mZ@
+j{iY@
+kY@{kK@O
+s{c{k
+iY@;lY@
+kK@O
+D;mO
+mZ@9k
+iY@{lY@
+kK@O
+D{mO
+e;mO
+;ezm;mZ@
+lZ@yk;jY@
+lY@;lK@O
+s;d;l
+e{mO
+m{mZ@;mZ@
+k{jY@
+hY@{lK@O
+s{d{l
+mZ@{mZ@
+jY@;iY@
+lK@O
+mZ@9l
+jY@{iY@
+hK@O
+D;mO
+mZ@yl;kY@
+iY@;iK@O
+s;a;i
+D{mO
+e;mO
+;ezm;mZ@
+l{kY@
+iY@{iK@O
+s{a{i
+e{mO
+m{mZ@;mZ@
+kY@;jY@
+iK@O
+mZ@{mZ@9i
+kY@{jY@
+iK@O
+mZ@yi;lY@
+jY@;jK@O
+s;b;j
+D;mO
+i{lY@
+jY@{jK@O
+s{b{j
+D{mO
+e;mO
+;ezm;mZ@
+lY@;kY@
+jK@O
+e{mO
+hY@{kY@
+jK@O
+Cyj;iY@
+kY@;kK@O
+s;c;k
+j{iY@
+kY@{kK@O
+s{c{k
+D;mO
+iY@;lY@
+kK@O
+D{mO
+e;mO
+;ezm;m
+@ym;m
+iY@{lY@
+kK@O
+e{mO
+Cyk;jY@
+lY@;lK@O
+s;d;l
+k{jY@
+hY@{lK@O
+s{d{l
+jY@;iY@
+lK@O
+D;mO
+jY@{iY@
+hK@O
+D{mO
+e;mO
+;ezm;m
+@ym;m
+Cyl;kY@
+iY@;iK@O
+s;a;i
+e{mO
+l{kY@
+iY@{iK@O
+s{a{i
+kY@;jY@
+iK@O
+kY@{jY@
+iK@O
+D;mO
+Cyi;lY@
+jY@;jK@O
+s;b;j
+D{mO
+e;mO
+;ezm;m
+@ym;m
+i{lY@
+jY@{jK@O
+s{b{j
+e{mO
+lY@;kY@
+jK@O
+hY@{kY@
+jK@O
+Cyj;iY@
+kY@;kK@O
+s;c;k
+D;mO
+j{iY@
+kY@{kK@O
+s{c{k
+D{mO
+e;mO
+;ezm;m
+@ym;m
+iY@;lY@
+kK@O
+e{mO
+m{mZ@;mZ@9k
+iY@{lY@
+kK@O
+mZ@{mZ@yk;jY@
+lY@;lK@O
+s;d;l
+k{jY@
+hY@{lK@O
+s{d{l
+D;mO
+jY@;iY@
+lK@O
+D{mO
+e;mO
+;ezm;mZ@
+lZ@9l
+jY@{iY@
+hK@O
+e{mO
+m{mZ@;mZ@yl;kY@
+iY@;iK@O
+s;a;i
+mZ@{mZ@
+l{kY@
+iY@{iK@O
+s{a{i
+kY@;jY@
+iK@O
+D;mO
+mZ@9i
+kY@{jY@
+iK@O
+D{mO
+e;mO
+;ezm;mZ@
+lZ@yi;lY@
+jY@;jK@O
+s;b;j
+e{mO
+m{mZ@;mZ@
+i{lY@
+jY@{jK@O
+s{b{j
+mZ@{mZ@
+lY@;kY@
+jK@O
+mZ@9j
+hY@{kY@
+jK@O
+D;mO
+mZ@yj;iY@
+kY@;kK@O
+s;c;k
+D{mO
+e;mO
+;ezm;mZ@
+j{iY@
+kY@{kK@O
+s{c{k
+e{mO
+m{mZ@;mZ@
+iY@;lY@
+kK@O
+mZ@{mZ@9k
+iY@{lY@
+kK@O
+mZ@yk;jY@
+lY@;lK@O
+s;d;l
+D;mO
+k{jY@
+hY@{lK@O
+s{d{l
+D{mO
+e;mO
+;ezm;mZ@
+jY@;iY@
+lK@O
+e{mO
+{e{h
+`{h3
+h{h3:m
+x`zhB
+`zhJ
+sS`zhM
+`zhE
+`zhN
+i{hZa
+h[i;a
+hZi{h
+h[i:i
+i{h[
+;a:i{h
+D?+'
+{a;i
+{i@3{a{i?3zh
+#{a;i
+zh{i
+x`9`
+DZh{i
+3{a{i
+;h[i
+" {i
+zh{i
+3{a{i
+f4K{D
+/K{D
+IyD
+h}+%
+h~+1
+K{D
+L6{D
+H6{D
+@&zD
+l4{D
+h4{D
+`$zD
+`z`;`
+ 0;h}+
+#{c9
+#{c#
+#{c;l
+8c{k:k
+:hyh
+`z`;`
+;hzh
+`z`;`
+hzh8h{i
+x8h{i
+3{azi
+`z`;`O
+F{a{i
+izi9hxh
+JzDO
+JzDO
+JzDO
+H1;F
+3K{D3JzDO
+*K{D*JzDO
+x`{h
+#(IyD
+0<!JzD
+#;c{k
+3{czk
+K{D
+F6IyD
+ #{a
+F*IyD
+{i +-
+xc{j
+C;c{i
+EIyD
+Fk+
+:{c%
+8c;k
+5K{D
+4K{D
+7#3JzD
+<8[h
+:K{D
+:K{D
+h#9JzD
+44\h
+$4\h
+`z`;`
+D:hyh
+3{azi;i
+t-zD
+(s;
+(s;
+(s;
+(s;
+(s;
+(s;
+|9{D
+x9{D
+p)zD
+8s(;
+8s(;
+8s(;=!
+8s(;
+8q(9
+X6{D
+T6{D
+L&zD
+8q(9
+D4{D
+@4{D
+8$zD
+8s(;
+8s(;
+8s(;
+8s(;
+8s(;
+8s(;
+8s(;
+]K{D
+\K{D
+>#[JzD
+8s(;
+8s(;
+8s(;
+"'K{D
+x"+K
+8s(;
+8s(;
+8s(;
+8s(;
+x-+4
+8s(;
+8s(;
+8s(;
+8s(;
+8s(;[x-+
+8s(;
+8s(;
+8s(;
+8s(;
+8s(;
+h'zD
+X&zD
+,&zD
+|%zD
+L%zD
+8s(;
+OK{D
+OK{D
+3MJzD
+8s(;
+8s(;
+8s(;
+8s(;
+8s(;
+8p(8
+NK{D
+NK{D
+CLJzD
+8s(;
+8s(;
+8s(;
+{hZh
+x`9`;h
+n!JzD
+F{hZ`
+F{hZ`
+F{hZ`{h
+x`{h
+0;a;i
+cK{D
+cK{D
+JzDO
+`z`;`xh
+xa;h
+i[hzi
+i:lZb
+<K{D
+;K{D
+:JzD
+/K{D
+.K{D
+-JzD
+iziZ`;h
+i:lZb
+`z`;`
+Hq{h
+`z`;`;j
+`z`;`;h
+`z`;`
+Hq{h
+`z`;`
+h{axi
+1{b
+{j[h:i
+{j[h:i
+{j[hzi
+x/+
+h{j[h
+h{j[hzi
+`{jZj
+{j[i
+#;b$
+{j[k{b{j
+3;b;j
+x`9`
+x`9`;h
+h[h?!
+hZjQ
+l8{D
+l(zD@
+X8{D
+T8{D
+L(zD
+@&zD
+JzD@
+JzD@
+8&K{D&JzD@
+8"K{D"JzDO
+JzDO
+JzD@
+x`{h
+{hZh
+{hZh
+{h[h
+"Z`{h
+x++%
+rIIyD
+01s+
+01r+
+01s+
+01r+
+x`{h
+#{a$
+{izh
+{izh
+{izh
+{izh
+3{azi
+#;a{h
+JzDyh
+F{b{j
+JzDyh
+JzDyh
+JzDyh
+3{bP
+#;axj
+JzDyh
+JzDyh
+xf{n
+JzDyh
+{jyn
+~K{D
+c|JzDyh
+dK{D
+cbJzDyh
+3{bu
+{hZh{h
+8f;n
+SK{D
+SK{D
+sQJzDyh
+3{bM
+DK{D
+DK{D
+sBJzDyh
+3{b8n
+{jzh
+{h:nZ`{hZh{h
+xg{o
+x`9`9hxh
+JzD@!
+h[h;a
+K{D;a
+,%:`
+gK{D
+F:K{D
+x`9`{h
+h{a{i
+x;aO
+;i++
+;i-+
+JzDyh
+xa{i
+i++
+#{a{h
+8a;i
+CK{D
+CK{D
+AJzDyh
+#{ag
+/K{D
+/K{D
+-JzDyh
+"K{D
+"K{D
+ JzDyh
+JzDyh
+#{a{i
+x`{h
+x`{h
+%{hO
+,%{h
+%{h
+$%{h
+0%{h
+%yhO
+"Za{h
+x`9`{h
+#;ao
+%K{D
+$K{D
+)c#JzD
+;ih+(
+x`xh
+%{h
+x`{h
+"Za{h
+`z`;`
+c|K{D
+c{cH
+;czk;k
+"Z`;h
+jZ`;h
+[K{D
++F"F
+$zk;k
+'K{D
+&K{D
+_s%JzD
+F;hZ`;h
+{h;b
+`z`;`
+h;c{h
+x`{h
+9K{D
+h6K{D
+.K{D
+$K{D
+xa{i
+aK{D
+x`9`
+0pJzD
+#{bl
+iK{D
+F{j"
+hfK{D
+F{j"
+^K{D
+F{j"
+D;b/!8j
+:!8j
+xa{i
+NK{D
+F{j"
+zi;j
+3{b7K{D
+F{j"
+0;a8i
+h9j8i
+`z`;`{h
+OK{D
+OK{D
+5K{D
+4K{D
+'K{D
+'K{D
+`z`;`
+`;hzh
+_K{D
+^K{D
+UK{D
+TK{D
+oKJzD
+xa{i
+HK{D
+DK{D
+AK{D
+@K{D
+o0JzD
+xa{i
+#;izi
+`z`;`
+`;hzh
+nK{D
+nK{D
+2dJzD
+xa{i
+aK{D
+]K{D
+ZK{D
+YK{D
+2IJzD
+xa{i
+#;izi
+7K{D
+6K{D
+`z`;`{h
+(K{D
+(K{D
+`z`;`
+;hzh
+x`{h
+;K{D
+`z`;`
+;h;b{h
+;hzh
+yK{D
+k:muIyD
+F;c/
+rK{D
+k:moIyD
+jK{D
+k:mgIyD
+F;c
+dK{D
+k:mbIyD
+F;c;k
+^K{D
+^K{D
+;hzh
+:hyh
+FK{D
+;hzh
+xc{k
+mZ`{k:n
+`{kzn
+Fszn
+`z`;`
+;k:hyh
+`z`;`
+`z`;`
+;k:hyh
+`z`;`
+x`{h
+k'JzD
+%{h
+(%{h
+x`{h
+d"xh
+JzDxh
+JzD@
+{h[i
+{hZi{h
+{h[iyh
+JzDO
+2Z`
+F{hZ`{h[h
+"Z`;|
+%xh
+{h[h
+(5{g{h
+(%{o
+(%{h
+(%{h
+`z`;`
+x`9`{h
+`{h[i
+`{hX3
+x`{h
+#{a;j
+;jZk
+zK{D
+SxJzD9j
+mK{D
+SlJzD9j
+ %;j
+Hszh
+4zi{h
+T%;j
+h{hZg{h
+<SZJzD
+TK{D
+SK{D
+SRJzD9j
+"Z`xh
+G!K{D
+ %{h
+x`9`
+]K{D
+\K{D
+c[JzD9h
+l0{h
+CK{D
+CK{D
+cAJzD9h
+1K{D
+0K{D
+c/JzD9h
+h&JzD
+JzD9h
+x`{h
+uK{D
+`sK{D
+h;bb
+{hZh{j(!
+3{b{h
+{h[i
+{hZh{j(!
+3{b{h
+{h[i
+{hX3
+3{bzj
+x`{h
+{hX3
+!3,3
+hZk{h
+!3,3
+!3,3
+x`{h
+"Za{h
+{h[i
+K{D{a{h
+{h;a
+;i[h{a;i
+3;a;i
+x`9`
+`;hO
+xa{i
+`:i;h
+x`9`{h
+`{h[k
+x`9`
+#{f{h
+#;f;h
+"Z`;h
+d;{D
+X;{D
+`:hH
+S`;h
+!383
+mZdO
+m[l;a
+ *zD
+`;h:jZ`;h
+t9{D
+{hZh
+!3,3
+!3D3
+8e;m
+`;hO
+2Z`;h
+p8{D
+h(zD
+`:m;hZ`;h
+@8{D
+,8{D
+DY`;n
+h{e{m
+T7{D
+$7{D
+ 7{D
+"Z`;h
+"Z`;h
+h6{D
+@6{D
+<6{D
+4&zD
+;hZ`;h
+t5{D
+p5{D
+h%zD
+"Z`;h
+05{D
+5{D
+"Z`;h
+h4{D
+T4{D
+84{D
+04{D
+($zD
+K{D;c;k
+K{D{c{k
+;h"
+;hZ`;h
+m[kO
+m[kO
+;hZ`;h
+Bszn
+xK{D
+3vJzD
+sK{D
+3qJzD
+`:l;hZ`;h
+hK{D
+cK{D
+`z`{h
+"Z`{h
+8b;j
+`{hO
+rZ`{h
+`{hO
+2Z`{h
+j{hZ`{h
+}K{D
+}K{D
+iC{JzD
+`{h""Z`{h
+hsIyD
+rIyD
+D[h{a:j{j
+F:j{j
+DY`{j
+3{b[K{D
+F{j"
+!;j
+$!;j
+8K{D
+C7JzD
+0.HxD
+-K{D
+x`9`
+"9hxh
+`z`xh
+K{D{a
+K{D{a
+K{D;a
+K{D;a
+K{D{`
+K{D{`
+}K{D;`
+|K{D;`O
+xK{D
+xK{D
+oK{D
+nK{D
+nK{D
+2cK{D
+_K{D
+_K{D
+PK{D
+OK{D
+7K{D
+7K{D
+*K{D
+x`{h
+x`{h
+xa{i;azK{D
+!xK{D
+sK{D
+aoK{D
+FnK{D
+kK{D
+!gK{D
+bK{D
+_K{D
+\K{D
+WK{D
+D;b{j
+3;b{j
+3{bKK{D
+FDJzD
+`DK{D
+AK{D
+?K{D
+#{b4
+:K{D
+F#D7JzD
+p5K{D
+h5K{D
+/K{D
+h.K{D
+3{b'K{D
+#K{D
+!K{D
+F{`{h
+x`{h
+x`{h
+x`{h
+F{`{h
+#{`{h
+x`{h
+x`{h
+x`9`{h
+`9hxh
+x`9`
+;hzh
+x`{h
+F{hZ`O
+x`{h
+{h[h
+{h[h
+"Z`{h
+x`9`
+F{a{i
+-K{D
+`yixh
+8a;i
+h;iXh;i[i
+x`9`xh
+`z`;`
+xa K{D
+K{D
+x`9`
+x`{h
+{pG8m
+nryh
+`dL|D
+ 1VK{D
+@IyD
+;K{D
+;K{D
+:K{D
+:K{D:JzD:IyD
+6K{D
+2K{D
+0K{D
+!.K{D
+,K{D
++K{D
+)K{D
+'K{D
+h&K{D
+#K{D
+x`{h
+x`{h
+{h[h
+{h[h
+`{h[h
+{h[h
+"Z`{h
+x`9`$K{D
+"K{D
+!K{D
+#{bO
+F;bO
+xayhYK{D
+{i[h
+h{i[h
+OK{D
+NK{D
+{i[h
+JK{D
+{i[i;a:i
+8b;j
+{i[h
+h9i8K{D
+i5K{D
+{i[h
+#{b:i*K{D
+:i%K{D
+F9jxh
+x`9`xh
+i[i{a7K{D
+iRhyi
+Fyh1HxD
+h/JzD
+&K{D
+$K{D
+#K{D
+8a;i
+;i[h
+;i[h
+x`xh
+x`9`8h
+x`{h
+#{gEK{D
+AK{D{g{o
+F>JzD
+8K{D{a
+8g;o
+q1K{D
+#.JzD.IyD8o
+,K{D
+q(K{D
+%K{D
+q K{D
+#JzD
+x`{h
+@BpG
+@BpG8
+@BpG
+L@AA
+Q)C0
+!pG0
+!pG0
+`QpG2
+!pG0
+listening_ports
+8080
+num_threads
+prespawn_threads
+run_as_user
+tcp_nodelay
+max_request_size
+16384
+linger_timeout_ms
+connection_queue
+listen_backlog
+allow_sendfile_call
+throttle
+enable_keep_alive
+request_timeout_ms
+30000
+keep_alive_timeout_ms
+websocket_timeout_ms
+enable_websocket_ping_pong
+decode_url
+decode_query_string
+document_root
+fallback_document_root
+access_log_file
+error_log_file
+cgi_pattern
+**.cgi$|**.pl$|**.php$
+cgi_environment
+cgi_interpreter
+cgi_interpreter_args
+cgi_buffering
+cgi2_pattern
+cgi2_environment
+cgi2_interpreter
+cgi2_interpreter_args
+cgi2_buffering
+put_delete_auth_file
+protect_uri
+authentication_domain
+mydomain.com
+enable_auth_domain_check
+ssi_pattern
+**.shtml$|**.shtm$
+enable_directory_listing
+enable_webdav
+global_auth_file
+index_files
+index.xhtml,index.html,index.htm,index.cgi,index.shtml,index.php
+access_control_list
+extra_mime_types
+ssl_certificate
+ssl_certificate_chain
+url_rewrite_patterns
+hide_files_patterns
+ssl_verify_peer
+ssl_cache_timeout
+ssl_ca_path
+ssl_ca_file
+ssl_verify_depth
+ssl_default_verify_paths
+ssl_cipher_list
+ssl_protocol_version
+ssl_short_trust
+websocket_root
+fallback_websocket_root
+access_control_allow_origin
+access_control_allow_methods
+access_control_allow_headers
+error_pages
+static_file_max_age
+3600
+static_file_cache_control
+additional_header
+allow_index_script_resource
+civetweb-%s
+truncating vsnprintf buffer: [%.*s]
+%a, %d %b %Y %H:%M:%S GMT
+Thu, 01 Jan 1970 00:00:00 GMT
+[%010lu] [error] [client %s] 
+%s %s: 
+user
+1.17
+https
+http
+%s://%s%s%s
+Connection
+keep-alive
+close
+HTTP/%s %i %s
+%s: %s
+Date
+Date: %s
+Connection: %s
+no-cache, no-store, must-revalidate, private, max-age=0
+Cache-Control
+Expires
+no-cache
+Pragma
+max-age=%lu
+Origin
+Access-Control-Allow-Origin
+Continue
+Switching Protocols
+Processing
+Created
+Accepted
+Non-Authoritative Information
+No Content
+Reset Content
+Partial Content
+Multi-Status
+Already Reported
+IM used
+Multiple Choices
+Moved Permanently
+Found
+See Other
+Not Modified
+Use Proxy
+Temporary Redirect
+Permanent Redirect
+Bad Request
+Unauthorized
+Payment Required
+Forbidden
+Not Found
+Method Not Allowed
+Not Acceptable
+Proxy Authentication Required
+Request Time-out
+Conflict
+Gone
+Length Required
+Precondition Failed
+Request Entity Too Large
+Request-URI Too Large
+Unsupported Media Type
+Requested range not satisfiable
+Expectation Failed
+Misdirected Request
+Unproccessable entity
+Locked
+Failed Dependency
+Upgrade Required
+Precondition Required
+Too Many Requests
+Request Header Fields Too Large
+Unavailable For Legal Reasons
+Internal Server Error
+Not Implemented
+Bad Gateway
+Service Unavailable
+Gateway Time-out
+HTTP Version not supported
+Variant Also Negotiates
+Insufficient Storage
+Loop Detected
+Not Extended
+Network Authentication Required
+I am a teapot
+Authentication Timeout
+Enhance Your Calm
+Login Timeout
+Bandwidth Limit Exceeded
+Unknown HTTP response code: %u
+Information
+Success
+Redirection
+Client Error
+Server Error
+%serror%03u.
+%serror%01uxx.
+%serror.
+text/plain; charset=utf-8
+Content-Type
+Error %d: %s
+text/html
+chunked
+Transfer-Encoding
+%llu
+Content-Length
+Location
+%s: fcntl(F_SETFD FD_CLOEXEC) failed: %s
+DELETE
+MKCOL
+PATCH
+LOCK
+UNLOCK
+PROPPATCH
+MOVE
+COPY
+PROPFIND
+Accept-Encoding
+gzip
+%d/%3s/%d %d:%d:%d
+%d %3s %d %d:%d:%d
+%*3s, %d %3s %d %d:%d:%d
+%d-%3s-%d %d:%d:%d
+/../
+.bin
+application/octet-stream
+.deb
+.dmg
+.dll
+.doc
+application/msword
+.eps
+application/postscript
+.exe
+.iso
+application/javascript
+.json
+application/json
+.msi
+.pdf
+application/pdf
+.rtf
+application/rtf
+.xhtml
+application/xhtml+xml
+.xsl
+application/xml
+.xslt
+.ttf
+application/font-sfnt
+.cff
+.otf
+.aat
+.sil
+.pfr
+application/font-tdpfr
+.woff
+application/font-woff
+.woff2
+application/font-woff2
+.mp3
+audio/mpeg
+.oga
+audio/ogg
+.ogg
+.gif
+image/gif
+.ief
+image/ief
+.jpeg
+image/jpeg
+.jpg
+.jpm
+image/jpm
+.jpx
+image/jpx
+.png
+image/png
+.svg
+image/svg+xml
+.tif
+image/tiff
+.tiff
+.wrl
+model/vrml
+.css
+text/css
+.csv
+text/csv
+.htm
+.html
+.sgm
+text/sgml
+.shtm
+.shtml
+.txt
+text/plain
+.xml
+text/xml
+.mov
+video/quicktime
+.mp4
+video/mp4
+.mpeg
+video/mpeg
+.mpg
+.ogv
+video/ogg
+.arj
+application/x-arj-compressed
+application/x-gunzip
+.rar
+.swf
+application/x-shockwave-flash
+.tar
+application/x-tar
+.tgz
+application/x-tar-gz
+.torrent
+application/x-bittorrent
+.ppt
+application/x-mspowerpoint
+.xls
+application/x-msexcel
+.zip
+application/x-zip-compressed
+.aac
+audio/aac
+.flac
+audio/flac
+.aif
+audio/x-aif
+.m3u
+audio/x-mpegurl
+.mid
+audio/x-midi
+audio/x-pn-realaudio
+.ram
+.wav
+audio/x-wav
+.bmp
+image/bmp
+.ico
+image/x-icon
+.pct
+image/x-pct
+.pict
+image/pict
+.rgb
+image/x-rgb
+.webm
+video/webm
+.asf
+video/x-ms-asf
+.avi
+video/x-msvideo
+.m4v
+video/x-m4v
+.htpasswd
+%s/%s
+%.*s/%s
+Authorization
+Basic 
+Digest 
+username
+cnonce
+response
+nonce
+include=
+%s: cannot open authorization file: %s
+%s: syntax error in authorization file: %s
+%.*s
+%s: cannot open %s: %s
+Digest qop="auth", realm="%s", nonce="%llu"
+WWW-Authenticate
+%255[^:]:%255[^:]:%255s
+%s:%s:%s
+NULL host
+invalid port
+host not found
+socket(): %s
+Cannot set socket to non-blocking: %s
+connect(%s:%d): timeout
+connect(%s:%d): error %s
+&amp;
+&lt;
+&gt;
+[DIRECTORY]
+%.1fk
+%.1fM
+%.1fG
+%d-%b-%Y %H:%M
+01-Jan-1970 00:00
+<tr><td><a href="%s%s">%s%s</a></td><td>&nbsp;%s</td><td>&nbsp;&nbsp;%s</td></tr>
+**.htpasswd$
+%s: mg_stat(%s) failed: %s
+Error: Cannot open directory
+opendir(%s): %s
+text/html; charset=utf-8
+<!DOCTYPE html><html><head><title>Index of %s</title><style>th {text-align: left;}</style></head><body><h1>Index of %s</h1><pre><table cellpadding="0"><tr><th><a href="?n%c">Name</a></th><th><a href="?d%c">Modified</a></th><th><a href="?s%c">Size</a></th></tr><tr><td colspan="3"><hr></td></tr>
+Parent directory
+<tr><td><a href="%s">%s</a></td><td>&nbsp;%s</td><td>&nbsp;&nbsp;%s</td></tr>
+</table></pre></body></html>
+%s: fseeko() failed: %s
+Error: Unable to access file at requested position.
+bytes=%lld-%lld
+"%lx.%lld"
+HEAD
+Error: File size is too large to send
+%lld
+Range
+%s.gz
+Error: Path of zipped file too long (%s)
+Error: Cannot open file
+fopen(%s): %s
+Error: Range requests in gzipped files are not supported
+bytes %lld-%lld/%lld
+Last-Modified
+Etag
+%lld
+bytes
+Accept-Ranges
+Content-Encoding
+Content-Range
+If-Modified-Since
+If-None-Match
+Error: Directory listing denied
+Error: File not found
+%s: Cannot remove invalid file %s
+%s: Contents already consumed
+POST
+OPTIONS
+CONNECT
+REPORT
+HTTP/
+ virtual="%511[^"]"
+ abspath="%511[^"]"
+ file="%511[^"]"
+ "%511[^"]"
+Bad SSI #include: [%s]
+SSI #include path length overflow: [%s]
+Cannot open SSI #include: [%s]: fopen(%s): %s
+ "%1023[^"]"
+Bad SSI #exec: [%s]
+Cannot SSI #exec: [%s]: %s
+SSI #include level is too deep (%s)
+include
+exec
+%s: unknown SSI command: "%s"
+<!--#
+%s: tag is too large
+Error: Cannot read file
+fopen(%s): %s
+%s%s
+HTTP/1.1 101 Switching Protocols
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Accept: %s
+Sec-WebSocket-Protocol: %s
+wsock
+websocket out of memory; closing connection
+Websocket pull failed; closing connection
+worker
+Cannot allocate buffer for masked websocket response: Out of memory
+Sec-WebSocket-Key
+Sec-WebSocket-Version
+Sec-WebSocket-Key1
+Sec-WebSocket-Key2
+Protocol upgrade to RFC 6455 required
+Malformed websocket request
+Protocol upgrade required
+Sec-WebSocket-Protocol
+Not found
+Websocket handshake failed
+upgrade
+Upgrade
+websocket
+%u.%u.%u.%u/%u%n
+%u.%u.%u.%u%n
+%lf%c
+%s: Cannot decode filename
+%s: Function "Get" not available
+%s: Function "Store" not available
+%s: Not enough memory (required: %lu)
+%s: Cannot write file %s
+%s: Error saving file %s
+%s: Cannot create file %s
+APPLICATION/X-WWW-FORM-URLENCODED
+APPLICATION/WWW-FORM-URLENCODED
+MULTIPART/FORM-DATA;
+BOUNDARY=
+%s: Cannot allocate memory for boundary [%lu]
+Content-Disposition
+name="
+:,; 
+name=
+filename="
+filename=
+Host
+Redirect URL too long
+Cannot create new request handler struct, OOM
+Error: SSL forward not configured properly
+Can not redirect to SSL, no SSL port available
+Access-Control-Request-Method
+Access-Control-Request-Headers
+HTTP/1.1 200 OK
+Date: %s
+Access-Control-Allow-Origin: %s
+Access-Control-Allow-Methods: %s
+Content-Length: 0
+Connection: %s
+Access-Control-Allow-Headers: %s
+Access-Control-Max-Age: 60
+%s method not allowed
+%u.%u.%u.%u:%u%n
+%u%n
+[IP_ADDRESS:]PORT[s|r]
+%.*s: invalid port spec (entry %i). Expecting list of: %s
+cannot create socket (entry %i)
+cannot set socket option SO_REUSEADDR (entry %i)
+IPv6 not available
+cannot bind to %.*s: %d (%s)
+cannot bind: address family not supported (entry %i)
+%s value "%s" is invalid
+cannot listen to %.*s: %d (%s)
+call to getsockname failed %.*s: %d (%s)
+Out of memory
+%d/%b/%Y:%H:%M:%S %z
+01/Jan/1970:00:00:00 +0000
+Referer
+User-Agent
+%s - %s [%s] "%s %s%s%s HTTP/%s" %d %lld %s %s
+Error writing log file %s
+%s: subnet must be [+|-]IP-addr[/x]
+%s: unknown user [%s]
+%s: setgid(%s): %s
+%s: setgroups(): %s
+%s: setuid(%s): %s
+Cannot open %s: %s
+%s: getsockopt(SOL_SOCKET SO_ERROR) failed: %s
+%s: setsockopt(SOL_SOCKET SO_LINGER(%i,%i)) failed: %s
+calloc(): %s
+%s: getsockname() failed: %s
+Can not create mutex
+http://
+https://
+ws://
+wss://
+Internal error
+Invalid message size
+Message too large
+Malformed message
+No data received
+Bad request
+Bad request: Host mismatch
+identity
+Bad response
+Parameter error
+Error sending request
+ws-clnt
+Unexpected error
+GET %s HTTP/1.1
+Host: %s
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: %s
+Sec-WebSocket-Version: 13
+Sec-WebSocket-Extensions: %s
+Origin: %s
+GET %s HTTP/1.1
+Host: %s
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: %s
+Sec-WebSocket-Version: 13
+Origin: %s
+GET %s HTTP/1.1
+Host: %s
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: %s
+Sec-WebSocket-Version: 13
+Sec-WebSocket-Extensions: %s
+GET %s HTTP/1.1
+Host: %s
+Upgrade: websocket
+Connection: Upgrade
+Sec-WebSocket-Key: %s
+Sec-WebSocket-Version: 13
+Unexpected server reply
+Bad HTTP version: [%s]
+Invalid URI
+Internal error: Invalid worker index %i
+Out of memory: Cannot allocate buffer for worker %i
+Cannot create mutex
+%s: %s is not allowed to connect
+%s: setsockopt(SOL_SOCKET SO_KEEPALIVE) failed: %s
+%s: setsockopt(IPPROTO_TCP TCP_NODELAY) failed: %s
+master
+Library uninitialized
+Cannot initialize thread synchronization objects
+Invalid option: %s
+Invalid configuration option: %s
+%s: option value cannot be NULL
+Invalid configuration option value: %s
+warning: %s: duplicate option
+%s too small
+Out of memory: Cannot allocate %s
+Invalid number of worker threads
+Too many worker threads
+Document root must not be set
+Invalid global password file
+Failed to setup server ports
+Failed to run as configured user
+Failed to setup access control list
+Not enough memory for worker thread ID array
+Not enough memory for worker thread connection array
+Cannot start worker thread %i: error %ld
+Cannot create threads: error %ld
+Cannot create first worker thread: error %ld
+Invalid parameters
+Server already stopped
+Out or memory
+Invalid option value: %s
+authentication domain required
+Mandatory option %s missing
+domain %s already in use
+Domain %s specified by %s is already in use
+%s"version" : "%s"
+,%s"os" : "%s %s (%s) - %s"
+ Files
+ HTTPS
+ CGI
+ IPv6
+ WebSockets
+ Lua
+ JavaScript
+ Cache
+ Stats
+,%s"features" : %lu,%s"feature_list" : "Server:%s%s%s%s%s%s%s%s%s"
+Dec 21 2024
+,%s"build" : "%s"
+,%s"compiler" : "gcc: %u.%u.%u"
+,%s"data_model" : "int:%u/%u/%u/%u, float:%u/%u/%u, char:%u/%u, ptr:%u, size:%u, time:%u"
+mg_vsnprintf
+mg_get_response_code_text
+set_close_on_exec
+ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/
+0123456789abcdef
+read_auth_file
+check_authorization
+._-$,;~()
+scan_directory
+send_file_data
+fclose_on_exec
+remove_bad_file
+mg_store_body
+do_ssi_include
+do_ssi_exec
+send_ssi_file
+258EAFA5-E914-47DA-95CA-C5AB0DC85B11
+read_websocket
+mg_websocket_client_write
+url_encoded_field_found
+url_encoded_field_get
+mg_handle_form_request
+mg_set_handler_type
+handle_request
+set_ports_option
+log_access
+check_acl
+set_uid_option
+set_gpass_option
+close_socket_gracefully
+mg_connect_client_impl
+x3JJHMbDL1EzLkh9GBhXDw==
+worker_thread_run
+accept_new_connection
+mg_start2
+mg_start_domain2
+/wsURL
+listening_ports
+8081
+num_threads
+Company.ProtoName.bin
+Company.ProtoName.json
+URL:%s, method:%s, request_uri:%s, query_string:%s
+Client %u connected with subprotocol: %s
+Client %u closing connection
+Client %u ready to receive data
+text
+binary
+ping
+pong
+Websocket received %lu bytes of %s data from client %u
+Cannot start server: %s
+could not register signal handler
+samGPSServer[%u]:Websocket server running
+Websocket server stopping
+samGPSServer[%u]:module_samGPSServer_start 8081
+samGPSServer[%u]:module_samGPSServer_start err !
+listening_ports
+0.0.0.0:8192
+request_timeout_ms
+10000
+error_log_file
+error.log
+Enter send stream thread! 0x%08X
+Got exit signal!
+Realloc buffer failed!, size:%d -> %d
+Realloc buffer(%d -> %d)
+HTTP/1.1 200 OK
+Server: samMJPGServer/1.0
+Connection: close
+Cache-Control: no-store, no-cache, must-revalidate, pre-check=0, post-check=0, max-age=0
+Pragma: no-cache
+Content-Type: multipart/x-mixed-replace;boundary=arflebarfle
+--arflebarfle
+Content-Type: image/jpeg
+Content-Length: %d
+--arflebarfle
+Content-Type: image/jpeg
+Content-Length: %d
+Write failed!
+Leave send stream thread! 0x%08X
+Conn:0x%08X-0x%08X, URL:%s, method:%s, request_uri:%s, query_string:%s
+Conn:0x%08X closed!
+samJPGWeb[%u]:Cannot start WebServer - start failed.
+samJPGWeb[%u]:samJPGServer started on port(s) %s
+samJPGWeb[%u]:could not register signal handler
+samJPGWeb[%u]:Server stopped.
+samJPGWeb[%u]:module_samjpgweb_start port = %s!
+samJPGWeb[%u]:samjpgweb_pthread_create err !
+GCC: (GNU) 9.1.0
+aeabi
+.shstrtab
+.note.gnu.build-id
+.gnu.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.rel.dyn
+.rel.plt
+.init
+.text
+.fini
+.rodata
+.eh_frame
+.init_array
+.fini_array
+.data.rel.ro
+.dynamic
+.got
+.data
+.bss
+.comment
+.ARM.attributes

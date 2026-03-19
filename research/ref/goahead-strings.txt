@@ -1,0 +1,5 @@
+Configuration for %s
+me -d -q -platform linux-arm-cardv -configure . -gen make
+Configure:          %s
+    --auth authFile        # User and role configuration
+    --route routeFile      # Route configuration file

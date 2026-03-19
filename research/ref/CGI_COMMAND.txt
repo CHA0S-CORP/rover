@@ -1,0 +1,323 @@
+=====================================================================================================
+Drone CGI command:
+=====================================================================================================
+Time setting:
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.Preview.MJPEG.TimeStamp&value=2016%2408%2402%2419%2406%2423%24 
+
+Resolution setting:
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Videores&value=1080P30fps
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Videores&value=720P30fps
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Videores&value=VGA
+
+Capture/Record setting:
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Video&value=capture
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Video&value=[record/recordon/recordoff]
+
+Camera menu getting:
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Camera.Menu.*
+
+Status getting:
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Camera.Preview.MJPEG.status.*
+
+=====================================================================================================
+IPC CGI command:
+=====================================================================================================
+streamer:
+set
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=streamer&value=start
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=streamer&value=stop
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=forceiframe
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=setbitrate&value=1000000
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=setframerate&value=30
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=setvideogop&value=30
+
+command:
+set
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=reset_to_default
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=reboot
+
+get
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=streamerstatus
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=file_list
+
+devinfo:
+get
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=devinfo.fwver
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=devinfo.macaddr
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=devinfo.linuxkernelver
+
+=====================================================================================================
+Door Bell CGI command:
+=====================================================================================================
+Power off
+set
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.System.Power&value=Off
+=====================================================================================================
+Car CGI command:
+=====================================================================================================
+Network Setting
+get
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Net*
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Net.WIFI_STA.AP.Switch
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Net.WIFI_AP.SSID&property=Net.WIFI_AP.CryptoKey&property=Net.WIFI_STA.AP.2.SSID&property=Net.WIFI_STA.AP.2.CryptoKey
+
+set
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Net.WIFI_STA.AP.Switch&value=DISABLE
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Net.WIFI_AP.SSID&value=TT_WiFi&property=Net.WIFI_AP.CryptoKey&value=1234567890
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Net.Dev.1.Type&value=AP&property=Net&value=reset
+
+Camera Setting
+get
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Camera.Preview.*
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Camera.Menu.*
+
+set
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.Menu.AWB&value=AUTO 
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.Menu.EV&value=EV0
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.Menu.FWversion&value=1443
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.Menu.Flicker&value=50Hz
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.Menu.ImageRes&value=14MP
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.Menu.MTD&value=OFF
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.Menu.VideoRes&value=1080P30
+
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=TimeSettings&value=2016%2404%2419%2413%2448%2430%24
+
+Streaming
+get
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Camera.Preview.RTSP.av
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Camera.Preview.MJPEG.TimeStamp.*
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Camera.Preview.MJPEG.status.*
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Camera.Preview.Source.1.Camid
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Camera.Preview.Adas.*
+
+set
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.Preview.Source.1.Camid&value=front
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.Preview.RTSP.av&value=4
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.Preview.MJPEG.status.mode&value=Videomode
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Camera.Preview.MJPEG.status.record&value=Standby
+
+Directory
+dir
+http://192.168.1.1/cgi-bin/Config.cgi?action=dir&property=DCIM&format=all&count=16&from=0
+
+del
+http://192.168.1.1/cgi-bin/Config.cgi?action=del&property=$mnt$sdcard$DCIM$test3.mp4
+=====================================================================================================
+Quanta CGI command:
+=====================================================================================================
+RECORDING
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Video&value=record
+
+SCRIPT
+CGI_PROCESS.sh set Video record
+----------------------------------------------------------------------------------------------------
+TAKE_PICTURE
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Video&value=capture
+
+SCRIPT
+CGI_PROCESS.sh set Video capture
+----------------------------------------------------------------------------------------------------
+JPG_RESOLUTION
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Imageres&value=VGA  (640x480)
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Imageres&value=1.2M  (1280x720)
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Imageres&value=2M  (1920x1080)
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Imageres&value=3M  (2048x1536)
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Imageres&value=5M   (2560x1440)
+
+SCRIPT
+CGI_PROCESS.sh set Imageres VGA
+CGI_PROCESS.sh set Imageres 1.2M
+CGI_PROCESS.sh set Imageres 2M
+CGI_PROCESS.sh set Imageres 3M
+CGI_PROCESS.sh set Imageres 5M
+----------------------------------------------------------------------------------------------------
+BRIGHTNESS
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Brightness&value=0
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Brightness&value=128
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Brightness&value=255
+
+GET
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=47
+
+SCRIPT
+CGI_PROCESS.sh set Brightness 0
+CGI_PROCESS.sh set Brightness 128
+CGI_PROCESS.sh set Brightness 255
+CGI_PROCESS.sh get Brightness
+----------------------------------------------------------------------------------------------------
+CONTRAST
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Contrast&value=0
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Contrast&value=128
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Contrast&value=255
+
+GET
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=48
+
+SCRIPT
+CGI_PROCESS.sh set Contrast 0
+CGI_PROCESS.sh set Contrast 128
+CGI_PROCESS.sh set Contrast 255
+CGI_PROCESS.sh get Contrast
+----------------------------------------------------------------------------------------------------
+HUE
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Hue&value=-180
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Hue&value=0
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Hue&value=180
+
+GET
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Hue
+
+SCRIPT
+CGI_PROCESS.sh set Hue -180
+CGI_PROCESS.sh set Hue 0
+CGI_PROCESS.sh set Hue 180
+CGI_PROCESS.sh get Hue
+----------------------------------------------------------------------------------------------------
+SATURATION
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Saturation&value=0
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Saturation&value=128
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Saturation&value=255
+
+GET
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Saturation
+
+SCRIPT
+CGI_PROCESS.sh set Saturation 0
+CGI_PROCESS.sh set Saturation 128
+CGI_PROCESS.sh set Saturation 255
+CGI_PROCESS.sh get Saturation
+----------------------------------------------------------------------------------------------------
+SHARPNESS
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Sharpness&value=0
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Sharpness&value=128
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Sharpness&value=255
+
+GET
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Sharpness
+
+SCRIPT
+CGI_PROCESS.sh set Sharpness 0
+CGI_PROCESS.sh set Sharpness 128
+CGI_PROCESS.sh set Sharpness 255
+CGI_PROCESS.sh get Sharpness
+----------------------------------------------------------------------------------------------------
+GAMMA
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Gamma&value=0
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Gamma&value=128
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Gamma&value=255
+
+GET
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Gamma
+
+SCRIPT
+CGI_PROCESS.sh set Gamma 0
+CGI_PROCESS.sh set Gamma 128
+CGI_PROCESS.sh set Gamma 255
+CGI_PROCESS.sh get Gamma
+----------------------------------------------------------------------------------------------------
+EXPOSURE
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Exposure&value=-5
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Exposure&value=0
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Exposure&value=5
+
+GET
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Exposure
+
+SCRIPT
+CGI_PROCESS.sh set Exposure -5
+CGI_PROCESS.sh set Exposure 0
+CGI_PROCESS.sh set Exposure 5
+CGI_PROCESS.sh get Exposure
+----------------------------------------------------------------------------------------------------
+EXPOSURE_AUTO
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=AE&value=0
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=AE&value=1
+
+GET
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=AE
+
+SCRIPT
+CGI_PROCESS.sh set AE 0
+CGI_PROCESS.sh set AE 1
+CGI_PROCESS.sh get AE
+----------------------------------------------------------------------------------------------------
+BACKLIGHT
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Backlight&value=0
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Backlight&value=1
+
+GET
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Backlight
+
+SCRIPT
+CGI_PROCESS.sh set Backlight 0
+CGI_PROCESS.sh set Backlight 1
+CGI_PROCESS.sh get Backlight
+----------------------------------------------------------------------------------------------------
+SHUTTER_SPEED
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=1
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=2
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=3
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=4
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=5
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=6
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=7
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=8
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=9
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=10
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=11
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=12
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=13
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=Shutter&value=14
+
+GET
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=Shutter
+
+SCRIPT
+CGI_PROCESS.sh set Shutter 1
+CGI_PROCESS.sh set Shutter 2
+CGI_PROCESS.sh set Shutter 3
+CGI_PROCESS.sh set Shutter 4
+CGI_PROCESS.sh set Shutter 5
+CGI_PROCESS.sh set Shutter 6
+CGI_PROCESS.sh set Shutter 7
+CGI_PROCESS.sh set Shutter 8
+CGI_PROCESS.sh set Shutter 9
+CGI_PROCESS.sh set Shutter 10
+CGI_PROCESS.sh set Shutter 11
+CGI_PROCESS.sh set Shutter 12
+CGI_PROCESS.sh set Shutter 13
+CGI_PROCESS.sh set Shutter 14
+CGI_PROCESS.sh get Shutter
+----------------------------------------------------------------------------------------------------
+RESET_DEFAULT
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=reset_to_default&value=1
+
+SCRIPT
+CGI_PROCESS.sh set reset_to_default 1
+----------------------------------------------------------------------------------------------------
+CAMERA_TIME
+SET
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=65&value=0.0
+http://192.168.1.1/cgi-bin/Config.cgi?action=set&property=65&value=1471601405.617281453
+
+GET
+http://192.168.1.1/cgi-bin/Config.cgi?action=get&property=65
+
+SCRIPT
+CGI_PROCESS.sh set 65 1
+CGI_PROCESS.sh get 65
+----------------------------------------------------------------------------------------------------

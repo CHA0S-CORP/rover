@@ -28,20 +28,18 @@ const mjpeg = document.getElementById("mjpeg");
 const msg = document.getElementById("msg");
 const base = location.origin;
 
-// Try HLS first (if transcoder is running), fall back to MJPEG
+// Try RTSP HLS first (1080p, no transcode), fall back to MJPEG
 async function init() {
     try {
-        // Start HLS transcoder if not running
         const status = await fetch(base + "/api/stream/status").then(r => r.json());
-        if (!status.hls_active) {
-            msg.textContent = "Starting HLS stream...";
-            await fetch(base + "/api/stream/hls/start", { method: "POST" });
-            await new Promise(r => setTimeout(r, 4000));
+        if (!status.rtsp_hls_active && !status.hls_active) {
+            msg.textContent = "Starting 1080p stream...";
+            await fetch(base + "/api/stream/rtsp/start", { method: "POST" });
         }
-        const check = await fetch(base + "/api/stream/status").then(r => r.json());
-        if (check.hls_ready) {
-            startHls();
-            return;
+        for (let i = 0; i < 15; i++) {
+            await new Promise(r => setTimeout(r, 1000));
+            const check = await fetch(base + "/api/stream/status").then(r => r.json());
+            if (check.hls_ready) { startHls(); return; }
         }
     } catch(e) {}
     // Fall back to MJPEG

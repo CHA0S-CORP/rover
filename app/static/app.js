@@ -1,64 +1,130 @@
 const $ = (sel) => document.querySelector(sel);
 let statusInterval = null;
+let hlsInstance = null;
+let activeMode = null;
 
-// --- MJPEG Stream ---
+// --- Stream control ---
 
-function startMjpeg() {
-    const img = $("#mjpeg");
+async function startStream() {
+    const mode = $("#stream-mode").value;
+    $("#btn-stream-start").disabled = true;
+    $("#btn-stream-stop").disabled = false;
+    $("#stream-mode").disabled = true;
+
+    if (mode === "rtsp") {
+        await startRtspStream();
+    } else {
+        startMjpegStream();
+    }
+    activeMode = mode;
+}
+
+async function stopStream() {
+    if (activeMode === "rtsp") {
+        await stopRtspStream();
+    } else {
+        stopMjpegStream();
+    }
+    activeMode = null;
+    $("#btn-stream-start").disabled = false;
+    $("#btn-stream-stop").disabled = true;
+    $("#stream-mode").disabled = false;
+}
+
+// --- RTSP → HLS (1080p, no transcode) ---
+
+async function startRtspStream() {
     const overlay = $("#stream-overlay");
+    overlay.textContent = "Starting 1080p stream...";
+    overlay.classList.remove("hidden");
+    $("#stream-status").textContent = "RTSP HLS starting...";
+
+    await fetch("/api/stream/rtsp/start", { method: "POST" });
+
+    // Poll until HLS playlist is ready
+    for (let i = 0; i < 15; i++) {
+        await new Promise(r => setTimeout(r, 1000));
+        try {
+            const s = await fetch("/api/stream/status").then(r => r.json());
+            if (s.hls_ready) {
+                playHls();
+                $("#stream-status").textContent = "";
+                return;
+            }
+        } catch {}
+    }
+    overlay.textContent = "RTSP stream failed — try MJPEG";
+    $("#stream-status").textContent = "";
+}
+
+function playHls() {
+    const video = $("#hls-video");
+    const mjpeg = $("#mjpeg");
+    const overlay = $("#stream-overlay");
+
+    mjpeg.style.display = "none";
+    mjpeg.src = "";
+    video.style.display = "block";
+    overlay.classList.add("hidden");
+
+    const src = "/hls/live.m3u8";
+    if (Hls.isSupported()) {
+        hlsInstance = new Hls({ liveSyncDurationCount: 3, liveMaxLatencyDurationCount: 5 });
+        hlsInstance.loadSource(src);
+        hlsInstance.attachMedia(video);
+        hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => video.play());
+        hlsInstance.on(Hls.Events.ERROR, (_e, data) => {
+            if (data.fatal) {
+                overlay.textContent = "Stream error";
+                overlay.classList.remove("hidden");
+            }
+        });
+    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+        video.src = src;
+        video.play();
+    }
+}
+
+async function stopRtspStream() {
+    if (hlsInstance) {
+        hlsInstance.destroy();
+        hlsInstance = null;
+    }
+    const video = $("#hls-video");
+    video.style.display = "none";
+    video.src = "";
+    await fetch("/api/stream/rtsp/stop", { method: "POST" });
+    $("#stream-overlay").textContent = "Stream stopped";
+    $("#stream-overlay").classList.remove("hidden");
+}
+
+// --- MJPEG (low latency fallback) ---
+
+function startMjpegStream() {
+    const img = $("#mjpeg");
+    const video = $("#hls-video");
+    const overlay = $("#stream-overlay");
+
+    video.style.display = "none";
+    img.style.display = "block";
     img.src = "/api/stream/mjpeg?" + Date.now();
     img.onload = () => { overlay.classList.add("hidden"); };
     img.onerror = () => {
         overlay.textContent = "Stream error";
         overlay.classList.remove("hidden");
     };
-    $("#btn-stream-start").disabled = true;
-    $("#btn-stream-stop").disabled = false;
 }
 
-function stopMjpeg() {
+function stopMjpegStream() {
     const img = $("#mjpeg");
     img.src = "";
+    img.style.display = "none";
     $("#stream-overlay").textContent = "Stream stopped";
     $("#stream-overlay").classList.remove("hidden");
-    $("#btn-stream-start").disabled = false;
-    $("#btn-stream-stop").disabled = true;
 }
 
 function takeSnapshot() {
     window.open("/api/stream/snapshot", "_blank");
-}
-
-// --- HLS ---
-
-async function startHls() {
-    $("#btn-hls-start").disabled = true;
-    await fetch("/api/stream/hls/start", { method: "POST" });
-    $("#btn-hls-stop").disabled = false;
-    $("#stream-status").textContent = "HLS starting...";
-    setTimeout(() => { $("#stream-status").textContent = ""; }, 5000);
-}
-
-async function stopHls() {
-    await fetch("/api/stream/hls/stop", { method: "POST" });
-    $("#btn-hls-start").disabled = false;
-    $("#btn-hls-stop").disabled = true;
-}
-
-// --- RTSP HLS (4K copy, no transcode) ---
-
-async function startRtspHls() {
-    $("#btn-rtsp-start").disabled = true;
-    await fetch("/api/stream/rtsp/start", { method: "POST" });
-    $("#btn-rtsp-stop").disabled = false;
-    $("#stream-status").textContent = "RTSP HLS starting...";
-    setTimeout(() => { $("#stream-status").textContent = ""; }, 5000);
-}
-
-async function stopRtspHls() {
-    await fetch("/api/stream/rtsp/stop", { method: "POST" });
-    $("#btn-rtsp-start").disabled = false;
-    $("#btn-rtsp-stop").disabled = true;
 }
 
 // --- Status polling ---
@@ -92,10 +158,6 @@ async function pollStatus() {
         $("#stat-mjpeg").textContent = s.mjpeg_clients > 0 ? `${s.mjpeg_clients} viewer${s.mjpeg_clients > 1 ? "s" : ""}` : "Off";
         $("#stat-hls").textContent = s.hls_active ? (s.hls_ready ? "Ready" : "Starting") : "Off";
         $("#stat-rtsp").textContent = s.rtsp_hls_active ? (s.hls_ready ? "Ready" : "Starting") : "Off";
-        $("#btn-hls-start").disabled = s.hls_active || s.rtsp_hls_active;
-        $("#btn-hls-stop").disabled = !s.hls_active;
-        $("#btn-rtsp-start").disabled = s.rtsp_hls_active || s.hls_active;
-        $("#btn-rtsp-stop").disabled = !s.rtsp_hls_active;
     } catch {}
 }
 
@@ -183,13 +245,9 @@ function playFile(path) {
 // --- Init ---
 
 document.addEventListener("DOMContentLoaded", () => {
-    $("#btn-stream-start").addEventListener("click", startMjpeg);
-    $("#btn-stream-stop").addEventListener("click", stopMjpeg);
+    $("#btn-stream-start").addEventListener("click", startStream);
+    $("#btn-stream-stop").addEventListener("click", stopStream);
     $("#btn-snapshot").addEventListener("click", takeSnapshot);
-    $("#btn-hls-start").addEventListener("click", startHls);
-    $("#btn-hls-stop").addEventListener("click", stopHls);
-    $("#btn-rtsp-start").addEventListener("click", startRtspHls);
-    $("#btn-rtsp-stop").addEventListener("click", stopRtspHls);
     $("#btn-rec-start").addEventListener("click", () => camAction("/api/record/start"));
     $("#btn-rec-stop").addEventListener("click", () => camAction("/api/record/stop"));
     $("#btn-photo").addEventListener("click", () => camAction("/api/photo"));

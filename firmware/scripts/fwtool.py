@@ -80,7 +80,7 @@ def cmd_extract(args):
     rootfs_dir.mkdir()
     print(f"Extracting cpio archive → {rootfs_dir}/")
     subprocess.run(
-        f"cd {rootfs_dir} && gunzip -c ../rootfs.cpio.gz | cpio -idm 2>/dev/null",
+        f'cd "{rootfs_dir}" && gunzip -c ../rootfs.cpio.gz | cpio -idm 2>/dev/null',
         shell=True, check=True,
     )
     file_count = sum(1 for _ in rootfs_dir.rglob("*") if _.is_file())
@@ -104,7 +104,7 @@ def cmd_build(args):
     cpio_mod = fw_dir / "rootfs_mod.cpio.gz"
     print("Repacking rootfs cpio.gz ...")
     result = subprocess.run(
-        f"cd {rootfs_dir} && find . | cpio -o -H newc 2>/dev/null | gzip -9",
+        f'cd "{rootfs_dir}" && find . | cpio -o -H newc 2>/dev/null | gzip -9',
         shell=True, capture_output=True, check=True,
     )
     cpio_data = result.stdout
@@ -397,10 +397,12 @@ def cmd_diff(args):
             with open(orig, "rb") as f:
                 f.seek(CPIO_OFFSET)
                 cpio_data = f.read(CPIO_SIZE_OEM)
+            cpio_gz_path = ref_dir / "rootfs.cpio.gz"
+            with open(cpio_gz_path, "wb") as gz:
+                gz.write(cpio_data)
             subprocess.run(
-                f"cd {ref_dir} && echo '{{}}'| cat > /dev/null && "
-                f"gunzip -c | cpio -idm 2>/dev/null",
-                input=cpio_data, shell=True,
+                f'cd "{ref_dir}" && gunzip -c rootfs.cpio.gz | cpio -idm 2>/dev/null',
+                shell=True,
             )
             ref = ref_dir / "bootconfig" / "bin" / "default.ini"
             if not ref.exists():

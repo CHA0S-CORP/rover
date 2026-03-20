@@ -64,21 +64,26 @@ fi
 # ── Step 3: Prepare OTA (cmd=5001) ──
 
 printf "%-40s" "Preparing OTA (cmd=5001)..."
-resp=$(curl -sf --max-time 30 "${BASE}&cmd=5001" 2>/dev/null) || die "cmd=5001 failed"
+resp=$(curl -sf --max-time 30 "${BASE}&cmd=5001" 2>/dev/null) || die "cmd=5001 failed (no response)"
 if echo "$resp" | grep -q "<Status>0</Status>"; then
     green "OK"
 else
     dim "  Response: $resp"
-    red "WARNING: unexpected status (continuing anyway)"
+    die "cmd=5001 returned unexpected status — aborting before flash trigger"
 fi
 
-sleep 2
+echo "Waiting for tar extraction on camera..."
+sleep 5
 
 # ── Step 4: Trigger firmware update (cmd=5002) ──
 
 printf "%-40s" "Triggering firmware update (cmd=5002)..."
 resp=$(curl -sf --max-time 30 "${BASE}&cmd=5002" 2>/dev/null) || true
-green "SENT"
+if echo "$resp" | grep -q "<Status>0</Status>"; then
+    green "OK"
+else
+    green "SENT (camera may already be rebooting)"
+fi
 
 echo
 green "=== OTA triggered ==="

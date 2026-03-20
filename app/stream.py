@@ -1,9 +1,9 @@
-"""MJPEG proxy and HLS transcoder for SigmaStar dashcam.
+"""Stream proxy for SigmaStar dashcam.
 
-The camera serves MJPEG on port 8192 (640x360@25fps, boundary "arflebarfle").
-Two consumption modes:
-  1. Direct MJPEG proxy — low latency, works in <img> tags
-  2. ffmpeg MJPEG→HLS — embeddable <video> with hls.js, ~5s latency
+Three consumption modes:
+  1. RTSP→HLS (1080p H.264, no transcode) — primary, embeddable <video>
+  2. Direct MJPEG proxy (640x360@25fps) — low latency, works in <img> tags
+  3. ffmpeg MJPEG→HLS — legacy fallback if RTSP unavailable
 """
 
 import asyncio
@@ -147,6 +147,9 @@ class StreamManager:
     async def start_hls(self) -> None:
         if self.hls_active:
             return
+        # Stop RTSP HLS if running — they share the output dir
+        if self.rtsp_hls_active:
+            await self.stop_rtsp_hls()
         self._hls_running = True
         await self._launch_hls()
         self._hls_watch_task = asyncio.create_task(self._watch_hls())
@@ -217,6 +220,7 @@ class StreamManager:
         cmd = [
             "ffmpeg", "-y",
             "-rtsp_transport", "tcp",
+            "-stimeout", "5000000",  # 5s RTSP connect/read timeout (microseconds)
             "-i", CAM_STREAM_RTSP,
             "-c:v", "copy",
             "-f", "hls",
@@ -238,9 +242,14 @@ class StreamManager:
         # Stop MJPEG-based HLS if running — they share the output dir
         if self.hls_active:
             await self.stop_hls()
-        self._rtsp_hls_running = True
-        await self._launch_rtsp_hls()
-        self._rtsp_hls_watch_task = asyncio.create_task(self._watch_rtsp_hls())
+        try:
+            await self._launch_rtsp_hls()
+            self._rtsp_hls_running = True
+            self._rtsp_hls_watch_task = asyncio.create_task(self._watch_rtsp_hls())
+        except Exception:
+            self._rtsp_hls_running = False
+            await self._kill_rtsp_hls_process()
+            raise
 
     async def _watch_rtsp_hls(self) -> None:
         assert self._rtsp_hls_process is not None

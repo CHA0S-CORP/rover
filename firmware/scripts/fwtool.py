@@ -267,18 +267,20 @@ def cmd_tar(args):
 
 def cmd_flash_sd(args):
     fw_dir = Path(args.fw_dir)
-    tar_path = fw_dir / "R2D.tar"
+    bin_path = fw_dir / "R2D.bin"
 
-    if not tar_path.exists():
-        sys.exit(f"Error: {tar_path} not found — run tar first")
+    if not bin_path.exists():
+        sys.exit(f"Error: {bin_path} not found — run build first")
 
     sd_path = Path(args.sd_path)
     if not sd_path.is_dir():
         sys.exit(f"Error: SD card mount not found at {sd_path}")
 
+    # U-Boot's fatload reads from $(SdUpgradeImage) at offsets matching
+    # R2D.bin's layout. The file on SD must be the raw R2D.bin, not a tar.
     dest = sd_path / "SigmastarUpgradeSD.bin"
-    print(f"Copying {tar_path.name} → {dest}")
-    shutil.copy2(tar_path, dest)
+    print(f"Copying {bin_path.name} → {dest}")
+    shutil.copy2(bin_path, dest)
     size = dest.stat().st_size
     print(f"  → {dest} ({size:,} bytes)")
     print()

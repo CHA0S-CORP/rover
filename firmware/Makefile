@@ -86,7 +86,7 @@ build: check-tools ## Repack rootfs and rebuild R2D.bin
 tar: ## Create R2D.tar from R2D.bin + bootloader components
 	$(FWTOOL) tar
 
-flash-sd: ## Copy R2D.tar to SD card as SigmastarUpgradeSD.bin (set SD=/path)
+flash-sd: ## Copy R2D.bin to SD card as SigmastarUpgradeSD.bin (set SD=/path)
 	@test -d "$(SD)" || { echo "Error: SD card not found at $(SD)"; echo "Usage: make flash-sd SD=/Volumes/YOUR_SD"; exit 1; }
 	$(FWTOOL) flash-sd "$(SD)"
 
@@ -110,4 +110,4 @@ clean-all: ## Remove entire work directory (full reset)
 # ── Convenience aliases ──
 
 all: build tar ## Build and package (shortcut)
-flash: build tar flash-sd ## Build, package, and copy to SD card
+flash: build flash-sd ## Build and copy to SD card

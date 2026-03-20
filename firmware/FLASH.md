@@ -80,25 +80,17 @@ This repacks the rootfs cpio, patches the U-Boot header script with the new
 rootfs size (and shifts the UBIFS partition if needed), reassembles `R2D.bin`,
 and verifies gzip/UBIFS magic bytes at the expected offsets.
 
-### 5. Package for flashing
-
-```bash
-make tar
-```
-
-Creates `work/R2D.tar` containing `IPL`, `IPL_CUST`, `UBOOT`, and the
-modified `R2D.bin`.
-
-### 6. Copy to SD card
+### 5. Copy to SD card
 
 ```bash
 make flash-sd SD=/Volumes/YOUR_SD
 ```
 
-Copies `R2D.tar` to the SD card as `SigmastarUpgradeSD.bin`, the filename
-the camera's bootloader looks for during OTA updates.
+Copies `R2D.bin` to the SD card as `SigmastarUpgradeSD.bin`. The camera's
+U-Boot bootloader reads partitions at fixed offsets from this file using
+`fatload`, so it must be the raw binary — not a tar.
 
-Or do steps 4-6 in one shot:
+Or do steps 4-5 in one shot:
 
 ```bash
 make flash SD=/Volumes/YOUR_SD

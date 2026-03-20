@@ -31,7 +31,7 @@ OTA_PUSH := $(CURDIR)/scripts/ota-push.sh
 CAM_IP   ?= 192.168.1.252
 SD       ?= /Volumes/SDCARD
 
-.PHONY: help setup extract build tar flash-sd flash-ota info diff backup restore verify \
+.PHONY: help setup extract build tar flash-sd flash-ota flash-stock info diff backup restore verify \
         edit clean check-tools all flash push
 
 help: ## Show this help
@@ -103,6 +103,16 @@ verify: ## Run post-flash verification (ping, RTSP, MJPEG)
 
 restore: ## Restore R2D.bin to stock from backup
 	$(FWTOOL) restore
+
+flash-stock: ## OTA push the original stock firmware to the camera
+	@test -f "$(APK)" || { echo "Error: $(APK) not found"; exit 1; }
+	@echo "Extracting stock R2D.tar from APK ..."
+	@mkdir -p "$(FW_DIR)/stock"
+	@unzip -o "$(APK)" assets/R2D.tar -d "$(FW_DIR)/stock" 2>/dev/null
+	@mv "$(FW_DIR)/stock/assets/R2D.tar" "$(FW_DIR)/stock/R2D.tar"
+	@rm -rf "$(FW_DIR)/stock/assets"
+	@echo "Pushing stock firmware to camera ..."
+	@bash "$(OTA_PUSH)" "$(FW_DIR)/stock/R2D.tar" "$(CAM_IP)"
 
 clean: ## Remove build artifacts (keeps rootfs/ and backups)
 	rm -f "$(FW_DIR)/rootfs.cpio.gz" "$(FW_DIR)/rootfs_mod.cpio.gz" "$(FW_DIR)/R2D.tar"

@@ -80,31 +80,41 @@ This repacks the rootfs cpio, patches the U-Boot header script with the new
 rootfs size (and shifts the UBIFS partition if needed), reassembles `R2D.bin`,
 and verifies gzip/UBIFS magic bytes at the expected offsets.
 
-### 5. Copy to SD card
+### 5. Flash the camera
+
+**Method A: OTA over WiFi (recommended)**
+
+Connect to the dashcam's WiFi network, then:
+
+```bash
+make push
+```
+
+This builds, packages `R2D.tar`, uploads it to the camera over HTTP, and
+triggers the OTA update. The sequence (reversed from the Rove Android app):
+
+1. `cmd=1017&par=0` — stop recording
+2. `POST /` — upload `R2D.tar` as multipart form-data
+3. `cmd=5001` — prepare OTA (extract tar on camera)
+4. `cmd=5002` — trigger firmware flash and reboot
+
+The camera reboots automatically after flashing (30-60 seconds).
+
+**Method B: SD card**
 
 ```bash
 make flash-sd SD=/Volumes/YOUR_SD
 ```
 
-Copies `R2D.bin` to the SD card as `SigmastarUpgradeSD.bin`. The camera's
-U-Boot bootloader reads partitions at fixed offsets from this file using
-`fatload`, so it must be the raw binary — not a tar.
-
-Or do steps 4-5 in one shot:
+Copies `R2D.bin` to the SD card as `SigmastarUpgradeSD.bin`. Eject the card,
+insert into camera, then trigger the update from the dashcam WiFi:
 
 ```bash
-make flash SD=/Volumes/YOUR_SD
+curl "http://192.168.1.252/?custom=1&cmd=5001"
+curl "http://192.168.1.252/?custom=1&cmd=5002"
 ```
 
-## Flash the Camera
-
-1. **Eject** the SD card from your computer.
-2. Insert it into the camera's SD slot.
-3. Power on the camera.
-4. The LED will blink during the update. **Do not power off.**
-5. The camera reboots automatically when done.
-
-The update writes to NAND flash and typically takes 30-60 seconds.
+**Shortcut: `make flash SD=/Volumes/YOUR_SD`** — build + copy in one step.
 
 ## Verify
 

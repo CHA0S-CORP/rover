@@ -27,11 +27,12 @@ APK      := $(REPO)/rove_split_firmware_pack.apk
 INI      := $(FW_DIR)/rootfs/bootconfig/bin/default.ini
 INI_BAK  := $(INI).bak
 VERIFY   := $(CURDIR)/scripts/verify.sh
+OTA_PUSH := $(CURDIR)/scripts/ota-push.sh
 CAM_IP   ?= 192.168.1.252
 SD       ?= /Volumes/SDCARD
 
-.PHONY: help setup extract build tar flash-sd info diff backup restore verify \
-        edit clean check-tools all flash
+.PHONY: help setup extract build tar flash-sd flash-ota info diff backup restore verify \
+        edit clean check-tools all flash push
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*##' $(MAKEFILE_LIST) | \
@@ -90,6 +91,10 @@ flash-sd: ## Copy R2D.bin to SD card as SigmastarUpgradeSD.bin (set SD=/path)
 	@test -d "$(SD)" || { echo "Error: SD card not found at $(SD)"; echo "Usage: make flash-sd SD=/Volumes/YOUR_SD"; exit 1; }
 	$(FWTOOL) flash-sd "$(SD)"
 
+flash-ota: ## Upload R2D.tar to camera over WiFi and trigger OTA update
+	@test -f "$(FW_DIR)/R2D.tar" || { echo "Error: run 'make tar' first"; exit 1; }
+	@bash "$(OTA_PUSH)" "$(FW_DIR)/R2D.tar" "$(CAM_IP)"
+
 info: ## Show firmware layout, partition sizes, and integrity checks
 	$(FWTOOL) info
 
@@ -111,3 +116,4 @@ clean-all: ## Remove entire work directory (full reset)
 
 all: build tar ## Build and package (shortcut)
 flash: build flash-sd ## Build and copy to SD card
+push: build tar flash-ota ## Build, package, and OTA push over WiFi
